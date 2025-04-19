@@ -841,7 +841,7 @@ section .container {
 }
 
 .portfolio .portfolio-wrap .portfolio-info p {
-  color: #e0e0e0;
+  color: #e0e0e0fff;
   font-size: 14px;
   text-transform: uppercase;
   padding: 0;
@@ -1095,4 +1095,12 @@ section .container {
     right: 0;
     transform: translateX(-50%);
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 0 0 8px #00ffff;
+}
+
+a:hover {
+  text-shadow: 0 0 5px #ff00ff;
 }
