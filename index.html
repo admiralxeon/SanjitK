@@ -52,53 +52,101 @@
   <header id="header" class="header-tops">
     <div class="container">
       <h1><a href="">Sanjit Kulkarni</a></h1>
-     <!-- Replace the h2 typing section with this terminal -->
-<div class="terminal-container">
-  <div class="terminal-header">
-    <div class="terminal-buttons">
-      <div class="terminal-button btn-close"></div>
-      <div class="terminal-button btn-minimize"></div>
-      <div class="terminal-button btn-maximize"></div>
-    </div>
-    <div class="terminal-title">sanjit-kulkarni@portfolio:~$</div>
-  </div>
-  
-  <div class="terminal-content">
-    <div class="terminal-line">
-      <span class="prompt">sanjit@dev:~$</span>
-      <span class="command">whoami</span>
-    </div>
-    <div class="terminal-output name-output">SANJIT KULKARNI</div>
-    
-    <div class="terminal-line">
-      <span class="prompt">sanjit@dev:~$</span>
-      <span class="command">cat ./expertise.txt</span>
-    </div>
-    
-    <div class="loading-bar">
-      <div class="loading-progress"></div>
-    </div>
-    
-    <div class="role-display">
-      <div class="role-output">Unity Game Developer</div>
-      <div class="role-output">AR/VR Specialist</div>
-      <div class="role-output">Web3 Integration Expert</div>
-      <div class="role-output">Multiplayer Developer</div>
-    </div>
-    
-    <div class="typing-line">
-      <span class="prompt">sanjit@dev:~$</span>
-      <span class="command typed-text">ls ./projects</span>
-      <div class="terminal-cursor"></div>
-    </div>
-    
-    <div class="stats-line">
-      <div class="stat-item">CPU: Unity 95%</div>
-      <div class="stat-item">RAM: C# 90%</div>
-      <div class="stat-item">GPU: AR/VR 88%</div>
-    </div>
-  </div>
-</div>
+      
+      <!-- Modern Hero Section -->
+      <div class="hero-section">
+        <!-- Animated Particles -->
+        <canvas id="particle-canvas" class="particle-canvas"></canvas>
+        
+        <div class="hero-content">
+          <!-- Main Hero Text -->
+          <div class="hero-main">
+            <div class="hero-greeting">Hello, I'm</div>
+            <div class="hero-title">
+              <span class="typing-text">Unity Developer & AR/VR Specialist</span>
+            </div>
+            <p class="hero-tagline">Crafting immersive game experiences with cutting-edge technology</p>
+          </div>
+          
+          <!-- Specializations Grid -->
+          <div class="specializations-grid">
+            <div class="spec-card" data-spec="unity">
+              <div class="spec-icon">
+                <i class="bx bx-code-alt"></i>
+              </div>
+              <div class="spec-content">
+                <h3>Unity Developer</h3>
+                <div class="spec-progress">
+                  <div class="spec-progress-bar">
+                    <div class="spec-progress-fill" data-progress="95"></div>
+                  </div>
+                  <span class="spec-percentage">95%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="spec-card" data-spec="csharp">
+              <div class="spec-icon">
+                <i class="bx bx-code"></i>
+              </div>
+              <div class="spec-content">
+                <h3>C# Mastery</h3>
+                <div class="spec-progress">
+                  <div class="spec-progress-bar">
+                    <div class="spec-progress-fill" data-progress="90"></div>
+                  </div>
+                  <span class="spec-percentage">90%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="spec-card" data-spec="arvr">
+              <div class="spec-icon">
+                <i class="bx bx-cube"></i>
+              </div>
+              <div class="spec-content">
+                <h3>AR/VR Skills</h3>
+                <div class="spec-progress">
+                  <div class="spec-progress-bar">
+                    <div class="spec-progress-fill" data-progress="88"></div>
+                  </div>
+                  <span class="spec-percentage">88%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="spec-card" data-spec="web3">
+              <div class="spec-icon">
+                <i class="bx bx-network-chart"></i>
+              </div>
+              <div class="spec-content">
+                <h3>Web3 Expert</h3>
+                <div class="spec-progress">
+                  <div class="spec-progress-bar">
+                    <div class="spec-progress-fill" data-progress="85"></div>
+                  </div>
+                  <span class="spec-percentage">85%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="spec-card" data-spec="multiplayer">
+              <div class="spec-icon">
+                <i class="bx bx-server"></i>
+              </div>
+              <div class="spec-content">
+                <h3>Multiplayer Dev</h3>
+                <div class="spec-progress">
+                  <div class="spec-progress-bar">
+                    <div class="spec-progress-fill" data-progress="82"></div>
+                  </div>
+                  <span class="spec-percentage">82%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="#header"> <span>Home</span></a></li>
@@ -117,6 +165,11 @@
           <a href="https://github.com/admiralxeon" target="_blank" class="github"><i class="bx bxl-github"></i></a>
           <a href="mailto:sanjit.kulkarni.2018@gmail.com" target="_blank" class="google"><i class="bx bxl-google"></i></a>
       </div>
+      
+      <!-- Theme Toggle Button -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <i class="bx bx-sun" id="theme-icon"></i>
+      </button>
     </div>
   </header><!-- End Header -->
 
@@ -133,7 +186,6 @@
           <img src="assets/img/profile.jpeg" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <br>
           <p>Passionate and results-driven Unity Developer with over 3 years of hands-on experience in crafting immersive game experiences using Unity,
              AR/VR, and Web3 technologies. Adept at designing engaging gameplay systems, integrating blockchain features like NFTs and smart contracts,
               and deploying cross-platform games. Skilled in leveraging tools like Vuforia, REST APIs to build high-performance, interactive applications.
@@ -169,21 +221,21 @@
         <div class="col-lg-12" data-aos="fade-up" style="display: inline-block;">
 
           <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <h4 style="text-align:left;color:#12d640">PGP.GAME DEVELOPMENT</h4>
-            <h5 style="text-align:left;">2018 - 2021</h5>
-            <p style="text-align:left;color:#fff"><em>Mumbai University</em></p>
+            <h4>PGP.GAME DEVELOPMENT</h4>
+            <h5>2018 - 2021</h5>
+            <p><em>Mumbai University</em></p>
           </div>
 
           <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <h4 style="text-align:left;color:#12d640">BE. INFORMATION TECHNOLOGY</h4>
-            <h5 style="text-align:left;"> 2015 - 2018 </h5>
-            <p style="text-align:left;color:#fff"><em>Mumbai University</em></p>
+            <h4>BE. INFORMATION TECHNOLOGY</h4>
+            <h5>2015 - 2018</h5>
+            <p><em>Mumbai University</em></p>
           </div>
             
           <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <h4 style="text-align:left;color:#12d640">Diploma in COMPUTER TECHNOLOGY</h4>
-            <h5 style="text-align:left;"> 2012 - 2015</h5>
-            <p style="text-align:left;color:#fff"><em>Maharashtra State Board of Technical Education</em></p>
+            <h4>Diploma in COMPUTER TECHNOLOGY</h4>
+            <h5>2012 - 2015</h5>
+            <p><em>Maharashtra State Board of Technical Education</em></p>
           </div>
         </div>
       </div>
@@ -200,10 +252,10 @@
       <div class="row">
           <div class="col-lg-12" data-aos="fade-up">
               <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-                <h4 style="text-align:left;color:#12d640">Coincade Studios</h4>
-                <h5 style="text-align:left;"> January 2023 - PRESENT </h5>
-                <p style="text-align:left;color:#fff"><em> Game Developer </em></p>
-                <ul style="text-align:left;">
+                <h4>Coincade Studios</h4>
+                <h5>January 2023 - PRESENT</h5>
+                <p><em>Game Developer</em></p>
+                <ul>
                   <li>Developed a 2D Web3-integrated car racing game, leveraging REST APIs, Web3 SDKs, and smart contracts, resulting in seamless blockchain-based transactions.</li>
                   <li>Deployed the game on Android and WebGL, optimizing performance by 20% and integrating secure payment gateways for crypto transactions.</li>
                   <li>Key Achievement: Increased user engagement by 30% by implementing real-time NFT rewards and dynamic leaderboard mechanics.</li>
@@ -215,13 +267,13 @@
         <div class="row"> 
           <div class="col-lg-12" data-aos="fade-up">
             <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-              <h4 style="text-align:left;color:#12d640">Augurs Technologies Pvt Ltd</h4>
-              <h5 style="text-align:left;"> July 2022 - January 2023 </h5>
-              <p style="text-align:left;color:#fff"><em> Game Developer </em></p>
-              <ul style="text-align:left;">
+              <h4>Augurs Technologies Pvt Ltd</h4>
+              <h5>July 2022 - January 2023</h5>
+              <p><em>Game Developer</em></p>
+              <ul>
                 <li>Designed an interactive AR experience using Vuforia and real-time physics, simulating daily tasks to improve user engagement by 25%.</li>
                 <li>Engineered a real-time image scanning system for AR applications, reducing detection lag by 40% and enhancing dynamic target tracking.</li>
-                <li>Key Achievement:Spearheaded an AR-based insurance prototype, improving user interaction by 30% through optimized image recognition and animated policy visualization.</li>
+                <li>Key Achievement: Spearheaded an AR-based insurance prototype, improving user interaction by 30% through optimized image recognition and animated policy visualization.</li>
               </ul>
             </div>
         </div>
@@ -230,11 +282,11 @@
       <div class="row">  
         <div class="col-lg-12" data-aos="fade-up">
           <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <h4 style="text-align:left;color:#12d640">BYJU'S Future School</h4>
-            <h5 style="text-align:left;"> February 2021 - June 2022 </h5>
-            <p style="text-align:left;color:#fff"><em> Game Developer </em></p>
-            <ul style="text-align:left;">
-              <li>Designed and developed 5+ in-house Unity games, incorporating educational storytelling and physics- based challenges.</li>
+            <h4>BYJU'S Future School</h4>
+            <h5>February 2021 - June 2022</h5>
+            <p><em>Game Developer</em></p>
+            <ul>
+              <li>Designed and developed 5+ in-house Unity games, incorporating educational storytelling and physics-based challenges.</li>
               <li>Mentored 10+ student teams in game development, improving project completion rates by 40% and enhancing time management skills.</li>
               <li>Key Achievement: Mastered Roblox Studio within 2 months, leading student-driven game projects that enhanced learning outcomes in a gamified environment.</li>
             </ul>
@@ -252,13 +304,13 @@
       <div class="row">
         <div class="col-lg-12" data-aos="fade-up">
             <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-              <h4 style="text-align:left;color:#12d640">Devomark</h4>
-              <h5 style="text-align:left;"> May 2019 - July 2019</h5>
-              <p style="text-align:left;color:#fff"><em> Information Technology Trainer </em></p>
-              <ul style="text-align:left;">
+              <h4>Devomark</h4>
+              <h5>May 2019 - July 2019</h5>
+              <p><em>Information Technology Trainer</em></p>
+              <ul>
                 <li>Conducted training sessions for students in foundational web development, focusing on HTML and CSS. 
                   Designed interactive lessons and hands-on projects to enhance learning outcomes. Helped beginners grasp core web concepts,
-                   fostering confidence and interest in coding. </li>
+                   fostering confidence and interest in coding.</li>
               </ul>
             </div>
         </div>
@@ -267,13 +319,13 @@
       <div class="row">
         <div class="col-lg-12" data-aos="fade-up">
             <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-              <h4 style="text-align:left;color:#12d640">Numlock Technologies Pvt Ltd</h4>
-              <h5 style="text-align:left;">September 2018- November 2018</h5>
-              <p style="text-align:left;color:#fff"><em> Project Intern </em></p>
-              <ul style="text-align:left;">
+              <h4>Numlock Technologies Pvt Ltd</h4>
+              <h5>September 2018 - November 2018</h5>
+              <p><em>Project Intern</em></p>
+              <ul>
                 <li>Created visually appealing and brand-aligned social media posts using tools like Adobe Photoshop and Illustrator.
                    Collaborated with marketing teams to design promotional content, infographics, and banners, boosting online engagement
-                    and maintaining visual consistency across platforms. </li>
+                    and maintaining visual consistency across platforms.</li>
               </ul>
             </div>
         </div>
@@ -372,8 +424,8 @@
         <div class="col-lg-12" data-aos="fade-up">
           
           <!-- Enhanced Game Engines Section -->
-          <div class="col-md-12 mt-4 mt-md-0 icon-box enhanced-skill-box" data-aos="fade-up" data-aos-delay="100" style="background:#fff">
-            <h4 style="text-align:left;color:#09203a">🎮 Game Engines</h4>
+          <div class="col-md-12 mt-4 mt-md-0 icon-box enhanced-skill-box" data-aos="fade-up" data-aos-delay="100">
+            <h4>🎮 Game Engines</h4>
             
             <!-- Unity Skill -->
             <div class="skill-item">
@@ -403,15 +455,15 @@
               </div>
             </div>
             
-            <p style="text-align:left;margin-top:20px;"> 
+            <p class="skill-logos"> 
               <img src="https://camo.githubusercontent.com/4cfc29edabb061eef5572b532a0c17e43d5d7a2a50074171e849290e00212d32/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f632f63342f556e6974795f323032312e737667" alt="Unity" height="40" width="80">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Unreal_Engine_Logo.svg" alt="Unreal" height="40" width="100" style="margin-left:20px;">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Unreal_Engine_Logo.svg" alt="Unreal" height="40" width="100">
             </p>
           </div>
 
           <!-- Enhanced Programming Languages Section -->
-          <div class="col-md-12 mt-4 mt-md-0 icon-box enhanced-skill-box" data-aos="lefade-up" data-aos-delay="100" style="background:#fff">
-            <h4 style="text-align:left;color:#09203a">💻 Programming Languages</h4>
+          <div class="col-md-12 mt-4 mt-md-0 icon-box enhanced-skill-box" data-aos="fade-up" data-aos-delay="100">
+            <h4>💻 Programming Languages</h4>
             
             <!-- C# Skill -->
             <div class="skill-item">
@@ -441,15 +493,15 @@
               </div>
             </div>
             
-            <p style="text-align:left;margin-top:20px;">
+            <p class="skill-logos">
               <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/C-Sharp_Logo.svg" alt="C#" height="40" width="60">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++" height="40" width="60" style="margin-left:20px;"> 
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++" height="40" width="60"> 
             </p>
           </div>
 
           <!-- Enhanced Tools Section -->
-          <div class="col-md-12 mt-4 mt-md-0 icon-box enhanced-skill-box" data-aos="lefade-up" data-aos-delay="100" style="background:#fff">
-            <h4 style="text-align:left;color:#09203a">🛠️ Tools & Version Control</h4>
+          <div class="col-md-12 mt-4 mt-md-0 icon-box enhanced-skill-box" data-aos="fade-up" data-aos-delay="100">
+            <h4>🛠️ Tools & Version Control</h4>
             
             <!-- Git Skill -->
             <div class="skill-item">
@@ -465,15 +517,15 @@
               </div>
             </div>
             
-            <p style="text-align:left;margin-top:20px;">
+            <p class="skill-logos">
               <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg" alt="Git">
               <img src="https://www.vectorlogo.zone/logos/github/github-ar21.svg" alt="GitHub">
             </p>
           </div>
 
           <!-- Enhanced Frameworks Section -->
-          <div class="col-md-12 mt-4 mt-md-0 icon-box enhanced-skill-box" data-aos="lefade-up" data-aos-delay="100" style="background:#fff">
-            <h4 style="text-align:left;color:#09203a">🚀 Specialized Technologies</h4>
+          <div class="col-md-12 mt-4 mt-md-0 icon-box enhanced-skill-box" data-aos="fade-up" data-aos-delay="100">
+            <h4>🚀 Specialized Technologies</h4>
             
             <!-- AR/VR Skill -->
             <div class="skill-item">
@@ -517,8 +569,8 @@
               </div>
             </div>
             
-            <p style="text-align:left;margin-top:20px;">
-              <img src="rest-api-blue-logo-22098.png" alt="REST API" height="40" width="60" style="margin-right: 20px;">
+            <p class="skill-logos">
+              <img src="rest-api-blue-logo-22098.png" alt="REST API" height="40" width="60">
               <img src="https://images.seeklogo.com/logo-png/43/1/web3-logo-png_seeklogo-436086.png" alt="Web3" height="40" width="60">
             </p>
           </div>
@@ -539,12 +591,12 @@
         <div class="col-md-3 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
           <a download="Sanjit Kulkarni Resume.pdf"  target="_blank"><div class="icon"><i class="icofont-page"></i></div></a>
           <h4 class="title"><a download="Sanjit Kulkarni Resume.pdf" target="_blank">Resume</a></h4>
-          <p class="description" style="color:#fff;">The link contains downloadable resume</p>
+          <p class="description">The link contains downloadable resume</p>
         </div>
         <div class="col-md-3 mt-4 mt-md-0 icon-box" data-aos="fade-up">
           <a href="https://github.com/admiralxeon" target="_blank"><div class="icon"><i class="icofont-link"></i></div></a>
           <h4 class="title"><a href="https://github.com/admiralxeon" target="_blank">GitHub Repository</a></h4>
-          <p class="description" style="color:#fff;"> The github repository contains my projects.</p>
+          <p class="description">The github repository contains my projects.</p>
         </div>
       </div>
     </div>
@@ -613,9 +665,8 @@
   <script src="assets/vendor/typed.js/typed.min.js"></script>
   
   <script type="text/javascript">
-    // Terminal animation is now handled by CSS
-    // Typed.js animation removed in favor of terminal style
-    console.log('🖥️ Terminal interface loaded');
+    // Modern hero section loaded
+    console.log('✨ Modern hero section loaded');
   </script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

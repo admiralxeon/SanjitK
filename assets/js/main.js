@@ -485,97 +485,336 @@
   });
 
   // ========================================
-  // TERMINAL ANIMATION ENHANCEMENTS
-  // Add this to your main.js file before the closing })(jQuery);
+  // MODERN HERO SECTION ENHANCEMENTS
+  // Enhanced interactions for the new hero section
   // ========================================
 
-  function initTerminalEnhancements() {
-    // Terminal button interactions
-    const terminalButtons = document.querySelectorAll('.terminal-button');
-    
-    terminalButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        if (button.classList.contains('btn-close')) {
-          // Close animation
-          const terminal = document.querySelector('.terminal-container');
-          terminal.style.transform = 'scale(0.8)';
-          terminal.style.opacity = '0.3';
-          setTimeout(() => {
-            terminal.style.transform = 'scale(1)';
-            terminal.style.opacity = '1';
-          }, 500);
-        }
-        
-        if (button.classList.contains('btn-minimize')) {
-          // Minimize animation
-          const content = document.querySelector('.terminal-content');
-          content.style.height = content.style.height === '0px' ? 'auto' : '0px';
-          content.style.overflow = 'hidden';
-          content.style.transition = 'height 0.3s ease';
-        }
-        
-        if (button.classList.contains('btn-maximize')) {
-          // Maximize animation
-          const terminal = document.querySelector('.terminal-container');
-          if (terminal.style.maxWidth === '90vw') {
-            terminal.style.maxWidth = '600px';
-            terminal.style.transform = 'scale(1)';
-          } else {
-            terminal.style.maxWidth = '90vw';
-            terminal.style.transform = 'scale(1.05)';
-          }
-          terminal.style.transition = 'all 0.3s ease';
+  function initHeroEnhancements() {
+    // Animate spec cards on scroll
+    const specCards = document.querySelectorAll('.spec-card');
+    const specObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+          specObserver.unobserve(entry.target);
         }
       });
+    }, { threshold: 0.3 });
+
+    specCards.forEach(card => {
+      specObserver.observe(card);
     });
+
+    // Add hover effect to spec cards
+    specCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-4px)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  }
+
+  // Initialize hero enhancements when page loads
+  $(document).ready(function() {
+    setTimeout(initHeroEnhancements, 500);
+    initParticleSystem();
+    initProgressBars();
+    initTypingAnimation();
+    init3DCardEffects();
+  });
+
+  // ========================================
+  // PARTICLE SYSTEM FOR HERO SECTION
+  // ========================================
+  function initParticleSystem() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
     
-    // Terminal typing sound effect (optional)
-    function addTypingSound() {
-      const typedText = document.querySelector('.typed-text');
-      if (typedText) {
-        // Create subtle visual feedback
-        typedText.addEventListener('animationstart', () => {
-          document.querySelector('.terminal-cursor').style.boxShadow = '0 0 10px #00ffff';
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: 0, y: 0 };
+    let animationId;
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+
+    function getParticleColors() {
+      const theme = document.documentElement.getAttribute('data-theme');
+      if (theme === 'light') {
+        return {
+          primary: 'rgba(0, 136, 204, 0.6)',
+          secondary: 'rgba(204, 0, 136, 0.6)',
+          connection: 'rgba(0, 136, 204, 0.4)'
+        };
+      } else {
+        return {
+          primary: 'rgba(0, 255, 255, 0.5)',
+          secondary: 'rgba(255, 0, 255, 0.5)',
+          connection: 'rgba(0, 255, 255, 0.3)'
+        };
+      }
+    }
+
+    function createParticle() {
+      const colors = getParticleColors();
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 2 + 1,
+        life: Math.random(),
+        decay: Math.random() * 0.01 + 0.005,
+        color: Math.random() > 0.5 ? colors.primary : colors.secondary
+      };
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 30; i++) {
+        particles.push(createParticle());
+      }
+    }
+
+    function updateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+        
+        // Wrap around edges
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        
+        if (p.life <= 0) {
+          particles[i] = createParticle();
+        }
+        
+        // Draw particle
+        ctx.save();
+        ctx.globalAlpha = p.life * 0.6;
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            const colors = getParticleColors();
+            ctx.save();
+            ctx.globalAlpha = (1 - distance / 100) * 0.2;
+            ctx.strokeStyle = colors.connection;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+      }
+      
+      animationId = requestAnimationFrame(updateParticles);
+    }
+
+    // Mouse interaction
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        
+        // Attract nearby particles
+        particles.forEach(p => {
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            p.vx += (dx / distance) * 0.01;
+            p.vy += (dy / distance) * 0.01;
+          }
         });
+      });
+    }
+
+    // Update particles when theme changes
+    const themeObserver = new MutationObserver(() => {
+      initParticles();
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    resizeCanvas();
+    initParticles();
+    updateParticles();
+    
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
+    });
+  }
+
+  // ========================================
+  // PROGRESS BARS ANIMATION
+  // ========================================
+  function initProgressBars() {
+    const progressBars = document.querySelectorAll('.stat-progress-fill');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const progress = entry.target.getAttribute('data-progress');
+          setTimeout(() => {
+            entry.target.style.width = progress + '%';
+          }, 500);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    progressBars.forEach(bar => {
+      observer.observe(bar.closest('.stat-card'));
+    });
+  }
+
+  // ========================================
+  // TYPING ANIMATION
+  // ========================================
+  function initTypingAnimation() {
+    const typingElement = document.querySelector('.typing-text');
+    if (!typingElement) return;
+    
+    const text = typingElement.textContent;
+    typingElement.textContent = '';
+    
+    let i = 0;
+    const typeInterval = setInterval(() => {
+      if (i < text.length) {
+        typingElement.textContent += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(typeInterval);
+      }
+    }, 50);
+  }
+
+  // ========================================
+  // 3D CARD TILT EFFECTS
+  // ========================================
+  function init3DCardEffects() {
+    const specCards = document.querySelectorAll('.spec-card');
+    
+    specCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 15;
+        const rotateY = (centerX - x) / 15;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  // ========================================
+  // THEME SWITCHER FUNCTIONALITY
+  // ========================================
+  
+  function initThemeSwitcher() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const html = document.documentElement;
+    
+    // Get saved theme or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme, themeIcon);
+    
+    // Theme toggle click handler
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function() {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme, themeIcon);
+        
+        // Add transition effect
+        html.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+        
+        // Trigger a small animation
+        themeToggle.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          themeToggle.style.transform = '';
+        }, 150);
+      });
+    }
+    
+    function updateThemeIcon(theme, icon) {
+      if (icon) {
+        if (theme === 'light') {
+          icon.className = 'bx bx-moon';
+          icon.style.color = '#1a1a1a';
+        } else {
+          icon.className = 'bx bx-sun';
+          icon.style.color = '#e0e0e0';
+        }
       }
     }
     
-    // Hover effects for terminal
-    const terminal = document.querySelector('.terminal-container');
-    if (terminal) {
-      terminal.addEventListener('mouseenter', () => {
-        terminal.style.transform = 'translateY(-2px)';
-        terminal.style.transition = 'transform 0.3s ease';
-      });
+    // Listen for system theme preference changes
+    if (window.matchMedia) {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
       
-      terminal.addEventListener('mouseleave', () => {
-        terminal.style.transform = 'translateY(0)';
-      });
-    }
-    
-    // Add click to copy functionality for commands
-    const commands = document.querySelectorAll('.command');
-    commands.forEach(cmd => {
-      cmd.style.cursor = 'pointer';
-      cmd.title = 'Click to copy command';
-      
-      cmd.addEventListener('click', () => {
-        navigator.clipboard.writeText(cmd.textContent).then(() => {
-          // Visual feedback
-          cmd.style.color = '#ffff00';
-          setTimeout(() => {
-            cmd.style.color = '#ff00ff';
-          }, 200);
+      // Only apply system preference if no saved theme exists
+      if (!localStorage.getItem('theme')) {
+        mediaQuery.addEventListener('change', function(e) {
+          const systemTheme = e.matches ? 'light' : 'dark';
+          html.setAttribute('data-theme', systemTheme);
+          updateThemeIcon(systemTheme, themeIcon);
         });
-      });
-    });
-    
-    addTypingSound();
+      }
+    }
   }
-
-  // Initialize terminal enhancements when page loads
+  
+  // Initialize theme switcher when page loads
   $(document).ready(function() {
-    setTimeout(initTerminalEnhancements, 1000);
+    initThemeSwitcher();
   });
 
 })(jQuery);
