@@ -190,33 +190,60 @@
   });
 
   // Mobile Navigation
-  if ($('.nav-menu').length) {
+  // Check if mobile nav already exists in HTML, if not create it
+  if ($('.mobile-nav').length === 0 && $('.nav-menu').length) {
     var $mobile_nav = $('.nav-menu').clone().prop({
       class: 'mobile-nav d-lg-none'
     });
     $('body').append($mobile_nav);
-    $('body').prepend('<button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button>');
-    $('body').append('<div class="mobile-nav-overly"></div>');
-
-    $(document).on('click', '.mobile-nav-toggle', function(e) {
-      $('body').toggleClass('mobile-nav-active');
-      $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-      $('.mobile-nav-overly').toggle();
-    });
-
-    $(document).click(function(e) {
-      var container = $(".mobile-nav, .mobile-nav-toggle");
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-          $('.mobile-nav-overly').fadeOut();
-        }
-      }
-    });
-  } else if ($(".mobile-nav, .mobile-nav-toggle").length) {
-    $(".mobile-nav, .mobile-nav-toggle").hide();
   }
+  
+  // Only create toggle button if it doesn't exist
+  if ($('.mobile-nav-toggle').length === 0) {
+    $('body').prepend('<button type="button" class="mobile-nav-toggle d-lg-none" aria-label="Toggle mobile menu" aria-expanded="false"><i class="icofont-navigation-menu"></i></button>');
+  }
+  
+  // Only create overlay if it doesn't exist
+  if ($('.mobile-nav-overly').length === 0) {
+    $('body').append('<div class="mobile-nav-overly"></div>');
+  }
+
+  // Mobile nav toggle functionality
+  $(document).on('click', '.mobile-nav-toggle', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    $('body').toggleClass('mobile-nav-active');
+    var isActive = $('body').hasClass('mobile-nav-active');
+    $(this).attr('aria-expanded', isActive);
+    $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
+    if (isActive) {
+      $('.mobile-nav-overly').fadeIn(200);
+    } else {
+      $('.mobile-nav-overly').fadeOut(200);
+    }
+    return false;
+  });
+
+  // Close mobile nav when clicking outside
+  $(document).on('click', '.mobile-nav-overly', function(e) {
+    if ($('body').hasClass('mobile-nav-active')) {
+      $('body').removeClass('mobile-nav-active');
+      $('.mobile-nav-toggle').attr('aria-expanded', 'false');
+      $('.mobile-nav-toggle i').removeClass('icofont-close').addClass('icofont-navigation-menu');
+      $('.mobile-nav-overly').fadeOut(200);
+    }
+  });
+
+  // Close mobile nav when clicking a link
+  $(document).on('click', '.mobile-nav a', function(e) {
+    if ($('body').hasClass('mobile-nav-active')) {
+      $('body').removeClass('mobile-nav-active');
+      $('.mobile-nav-toggle').attr('aria-expanded', 'false');
+      $('.mobile-nav-toggle i').removeClass('icofont-close').addClass('icofont-navigation-menu');
+      $('.mobile-nav-overly').fadeOut(200);
+    }
+  });
 
   // jQuery counterUp
   $('[data-toggle="counter-up"]').counterUp({
