@@ -35,6 +35,19 @@
         } else {
           $("section").removeClass('section-show');
           $(hash).addClass('section-show');
+          
+          // Force visibility for Education section
+          if (hash === '#education') {
+            $('#education').css({
+              'opacity': '1',
+              'visibility': 'visible',
+              'display': 'block'
+            });
+            $('#education .icon-box').css({
+              'opacity': '1',
+              'visibility': 'visible'
+            });
+          }
         }
 
         if ($('body').hasClass('mobile-nav-active')) {
@@ -42,6 +55,61 @@
           $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
           $('.mobile-nav-overly').fadeOut();
         }
+
+        return false;
+      }
+    }
+  });
+
+  // CTA Button Navigation
+  $(document).on('click', '.cta-button', function(e) {
+    var href = $(this).attr('href');
+    if (href && href.indexOf('#') === 0) {
+      var hash = href;
+      var target = $(hash);
+      if (target.length) {
+        e.preventDefault();
+
+        // Update active nav item
+        $('.nav-menu .active, .mobile-nav .active').removeClass('active');
+        $('.nav-menu, .mobile-nav').find('a[href="' + hash + '"]').parent('li').addClass('active');
+
+        if (hash == '#header') {
+          $('#header').removeClass('header-top');
+          $("section").removeClass('section-show');
+          $('html, body').animate({
+            scrollTop: 0
+          }, 600);
+          return;
+        }
+
+        // Ensure header is sticky
+        if (!$('#header').hasClass('header-top')) {
+          $('#header').addClass('header-top');
+        }
+
+        // Show target section
+        $("section").removeClass('section-show');
+        $(hash).addClass('section-show');
+        
+        // Force visibility for Education section
+        if (hash === '#education') {
+          $('#education').css({
+            'opacity': '1',
+            'visibility': 'visible',
+            'display': 'block'
+          });
+          $('#education .icon-box').css({
+            'opacity': '1',
+            'visibility': 'visible'
+          });
+        }
+
+        // Smooth scroll to section
+        var sectionTop = $(hash).offset().top;
+        $('html, body').animate({
+          scrollTop: sectionTop - 90
+        }, 600);
 
         return false;
       }
@@ -58,9 +126,68 @@
       setTimeout(function() {
         $("section").removeClass('section-show');
         $(initial_nav).addClass('section-show');
+        
+        // Force visibility for Education section
+        if (initial_nav === '#education') {
+          $('#education').css({
+            'opacity': '1',
+            'visibility': 'visible',
+            'display': 'block'
+          });
+          $('#education .icon-box').css({
+            'opacity': '1',
+            'visibility': 'visible'
+          });
+        }
       }, 350);
     }
   }
+
+  // Sticky Navigation on Scroll - Always accessible when scrolling
+  var lastScrollTop = 0;
+  var scrollThreshold = 100; // Distance to scroll before showing sticky nav
+  var ticking = false;
+
+  function handleScroll() {
+    var scrollTop = $(window).scrollTop() || window.pageYOffset || document.documentElement.scrollTop;
+    var header = $('#header');
+    var isHeaderTop = header.hasClass('header-top');
+    var currentSection = $('section.section-show');
+
+    // Show sticky nav when:
+    // 1. Scrolling down past threshold (always accessible)
+    // 2. A section is currently visible
+    if (scrollTop > scrollThreshold || currentSection.length > 0) {
+      if (!isHeaderTop) {
+        header.addClass('header-top');
+      }
+    } else {
+      // Only remove sticky nav when scrolling back to very top and no section is active
+      // This allows the full hero section to be visible at the top
+      if (isHeaderTop && scrollTop <= 50 && currentSection.length === 0) {
+        header.removeClass('header-top');
+      }
+    }
+
+    lastScrollTop = scrollTop;
+    ticking = false;
+  }
+
+  // Add scroll event listener with requestAnimationFrame for smooth performance
+  $(window).on('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  });
+
+  // Also handle on initial load and resize
+  $(document).ready(function() {
+    handleScroll();
+    $(window).on('resize', function() {
+      handleScroll();
+    });
+  });
 
   // Mobile Navigation
   if ($('.nav-menu').length) {
@@ -475,14 +602,153 @@
       initScrollAnimations();
       animateSkillBars();
       initPortfolioEnhancements();
+      initPortfolioModal();
       initMobileMenuEnhancements();
       initKeyboardNavigation();
       initPerformanceMonitoring();
       createParticleSystem();
+      optimizeSkillsLoading();
       
       console.log('🎮 Enhanced Portfolio loaded successfully!');
     }, 500);
   });
+
+  // Portfolio Modal Functionality
+  function initPortfolioModal() {
+    const modal = document.getElementById('portfolio-modal');
+    const closeBtn = document.querySelector('.portfolio-modal-close');
+    const viewButtons = document.querySelectorAll('.portfolio-view-btn');
+
+    if (!modal) return;
+
+    // Open modal on "View Project" button click
+    viewButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const portfolioItem = this.closest('.portfolio-item');
+        if (portfolioItem) {
+          openPortfolioModal(portfolioItem);
+        }
+      });
+    });
+
+    // Close modal
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closePortfolioModal);
+    }
+
+    // Close on outside click
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closePortfolioModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closePortfolioModal();
+      }
+    });
+  }
+
+  function openPortfolioModal(item) {
+    const modal = document.getElementById('portfolio-modal');
+    const title = item.getAttribute('data-title') || item.querySelector('h4')?.textContent || 'Project';
+    const description = item.getAttribute('data-description') || 'No description available.';
+    const tech = item.getAttribute('data-tech') || '';
+    const videoLink = item.getAttribute('data-video') || '';
+    const githubLink = item.getAttribute('data-github') || '';
+    const demoLink = item.getAttribute('data-demo') || '';
+    const image = item.querySelector('img')?.src || '';
+
+    // Populate modal
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-description').textContent = description;
+    document.getElementById('modal-image').src = image;
+    document.getElementById('modal-image').alt = title;
+
+    // Tech stack tags
+    const techStack = document.getElementById('modal-tech');
+    techStack.innerHTML = '';
+    if (tech) {
+      tech.split('•').forEach(tag => {
+        const span = document.createElement('span');
+        span.textContent = tag.trim();
+        techStack.appendChild(span);
+      });
+    }
+
+    // Links
+    const videoBtn = document.getElementById('modal-video-link');
+    const githubBtn = document.getElementById('modal-github-link');
+    const demoBtn = document.getElementById('modal-demo-link');
+
+    if (videoLink) {
+      videoBtn.href = videoLink;
+      videoBtn.style.display = 'inline-flex';
+    } else {
+      videoBtn.style.display = 'none';
+    }
+
+    if (githubLink) {
+      githubBtn.href = githubLink;
+      githubBtn.style.display = 'inline-flex';
+    } else {
+      githubBtn.style.display = 'none';
+    }
+
+    if (demoLink) {
+      demoBtn.href = demoLink;
+      demoBtn.style.display = 'inline-flex';
+    } else {
+      demoBtn.style.display = 'none';
+    }
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePortfolioModal() {
+    const modal = document.getElementById('portfolio-modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Optimize Skills Loading
+  function optimizeSkillsLoading() {
+    const skillBoxes = document.querySelectorAll('.enhanced-skill-box');
+    
+    skillBoxes.forEach(box => {
+      // Add loading class initially
+      box.classList.add('loading');
+      
+      // Create skeleton loaders
+      const skeletonCount = 2;
+      for (let i = 0; i < skeletonCount; i++) {
+        const skeleton = document.createElement('div');
+        skeleton.className = 'skill-skeleton';
+        box.appendChild(skeleton);
+      }
+      
+      // Simulate loading delay (can be removed if not needed)
+      setTimeout(() => {
+        box.classList.remove('loading');
+        const skeletons = box.querySelectorAll('.skill-skeleton');
+        skeletons.forEach(s => s.remove());
+        
+        // Animate progress bars
+        const progressBars = box.querySelectorAll('.skill-progress-bar');
+        progressBars.forEach((bar, index) => {
+          const width = bar.getAttribute('data-width');
+          setTimeout(() => {
+            bar.style.width = width + '%';
+          }, index * 200);
+        });
+      }, 300);
+    });
+  }
 
   // ========================================
   // MODERN HERO SECTION ENHANCEMENTS
@@ -505,15 +771,65 @@
       specObserver.observe(card);
     });
 
-    // Add hover effect to spec cards
-    specCards.forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-4px)';
-      });
+    // Initialize expand/collapse functionality
+    initSpecCardExpand();
+    
+    // Animate progress bars for featured cards
+    initSpecProgressBars();
+  }
+
+  // Expand/Collapse functionality for skill cards
+  function initSpecCardExpand() {
+    const expandBtn = document.querySelector('.spec-expand-btn');
+    const grid = document.querySelector('.specializations-grid');
+    const hiddenCards = document.querySelectorAll('.spec-card-hidden');
+    
+    if (!expandBtn || !grid || hiddenCards.length === 0) return;
+
+    let isExpanded = false;
+
+    expandBtn.addEventListener('click', function() {
+      isExpanded = !isExpanded;
       
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-      });
+      if (isExpanded) {
+        grid.classList.add('expanded');
+        expandBtn.classList.add('expanded');
+        expandBtn.querySelector('.expand-text').style.display = 'none';
+        expandBtn.querySelector('.collapse-text').style.display = 'inline-block';
+        
+        // Animate progress bars for newly visible cards
+        setTimeout(() => {
+          hiddenCards.forEach((card, index) => {
+            const progressFill = card.querySelector('.spec-progress-fill');
+            if (progressFill) {
+              const progress = progressFill.getAttribute('data-progress');
+              setTimeout(() => {
+                progressFill.style.width = progress + '%';
+              }, index * 100);
+            }
+          });
+        }, 300);
+      } else {
+        grid.classList.remove('expanded');
+        expandBtn.classList.remove('expanded');
+        expandBtn.querySelector('.expand-text').style.display = 'inline-block';
+        expandBtn.querySelector('.collapse-text').style.display = 'none';
+      }
+    });
+  }
+
+  // Animate spec card progress bars
+  function initSpecProgressBars() {
+    const featuredCards = document.querySelectorAll('.spec-card-featured');
+    
+    featuredCards.forEach((card, index) => {
+      const progressFill = card.querySelector('.spec-progress-fill');
+      if (progressFill) {
+        const progress = progressFill.getAttribute('data-progress');
+        setTimeout(() => {
+          progressFill.style.width = progress + '%';
+        }, 1000 + (index * 200)); // Delay after card animation
+      }
     });
   }
 
@@ -724,10 +1040,11 @@
   }
 
   // ========================================
-  // 3D CARD TILT EFFECTS
+  // 3D CARD TILT EFFECTS (Subtle for non-featured cards)
   // ========================================
   function init3DCardEffects() {
-    const specCards = document.querySelectorAll('.spec-card');
+    // Only apply 3D effect to non-featured cards to avoid conflicts
+    const specCards = document.querySelectorAll('.spec-card:not(.spec-card-featured):not(.spec-card-hidden)');
     
     specCards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
@@ -738,8 +1055,8 @@
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        const rotateX = (y - centerY) / 15;
-        const rotateY = (centerX - x) / 15;
+        const rotateX = (y - centerY) / 20; // More subtle
+        const rotateY = (centerX - x) / 20;
         
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
       });
@@ -764,6 +1081,12 @@
     html.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme, themeIcon);
     
+    // Update toggle text on load
+    const themeToggleText = document.querySelector('.theme-toggle-text');
+    if (themeToggleText) {
+      themeToggleText.textContent = savedTheme === 'light' ? 'Light Mode' : 'Dark Mode';
+    }
+    
     // Theme toggle click handler
     if (themeToggle) {
       themeToggle.addEventListener('click', function() {
@@ -773,6 +1096,12 @@
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme, themeIcon);
+        
+        // Update toggle text
+        const themeToggleText = document.querySelector('.theme-toggle-text');
+        if (themeToggleText) {
+          themeToggleText.textContent = newTheme === 'light' ? 'Light Mode' : 'Dark Mode';
+        }
         
         // Add transition effect
         html.style.transition = 'background-color 0.3s ease, color 0.3s ease';
@@ -815,6 +1144,199 @@
   // Initialize theme switcher when page loads
   $(document).ready(function() {
     initThemeSwitcher();
+    initMobileNav();
+    initScrollProgress();
+    initSectionTransitions();
+    initKeyboardNavigation();
+    initLazyLoading();
   });
+
+  // ========================================
+  // MOBILE NAVIGATION
+  // ========================================
+  function initMobileNav() {
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const mobileNavOverly = document.querySelector('.mobile-nav-overly');
+    const body = document.body;
+
+    if (mobileNavToggle && mobileNav) {
+      mobileNavToggle.addEventListener('click', function() {
+        body.classList.toggle('mobile-nav-active');
+        const isActive = body.classList.contains('mobile-nav-active');
+        mobileNavToggle.setAttribute('aria-expanded', isActive);
+        
+        // Toggle icon
+        const icon = mobileNavToggle.querySelector('i');
+        if (icon) {
+          if (isActive) {
+            icon.classList.remove('icofont-navigation-menu');
+            icon.classList.add('icofont-close');
+          } else {
+            icon.classList.remove('icofont-close');
+            icon.classList.add('icofont-navigation-menu');
+          }
+        }
+      });
+
+      // Close mobile nav when clicking overlay
+      if (mobileNavOverly) {
+        mobileNavOverly.addEventListener('click', function() {
+          body.classList.remove('mobile-nav-active');
+          mobileNavToggle.setAttribute('aria-expanded', 'false');
+          const icon = mobileNavToggle.querySelector('i');
+          if (icon) {
+            icon.classList.remove('icofont-close');
+            icon.classList.add('icofont-navigation-menu');
+          }
+        });
+      }
+
+      // Close mobile nav when clicking a link
+      const mobileNavLinks = mobileNav.querySelectorAll('a');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          body.classList.remove('mobile-nav-active');
+          mobileNavToggle.setAttribute('aria-expanded', 'false');
+          const icon = mobileNavToggle.querySelector('i');
+          if (icon) {
+            icon.classList.remove('icofont-close');
+            icon.classList.add('icofont-navigation-menu');
+          }
+        });
+      });
+    }
+  }
+
+  // ========================================
+  // SCROLL PROGRESS INDICATOR
+  // ========================================
+  function initScrollProgress() {
+    const scrollProgress = document.querySelector('.scroll-progress');
+    const scrollProgressBar = document.querySelector('.scroll-progress-bar');
+    
+    if (scrollProgress && scrollProgressBar) {
+      let ticking = false;
+      
+      function updateProgress() {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        scrollProgressBar.style.width = scrolled + '%';
+        scrollProgress.setAttribute('aria-valuenow', Math.round(scrolled));
+        ticking = false;
+      }
+      
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(updateProgress);
+          ticking = true;
+        }
+      }, { passive: true });
+      
+      // Initial update
+      updateProgress();
+    }
+  }
+
+  // ========================================
+  // SMOOTH SECTION TRANSITIONS
+  // ========================================
+  function initSectionTransitions() {
+    const sections = document.querySelectorAll('section');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  }
+
+  // ========================================
+  // KEYBOARD NAVIGATION
+  // ========================================
+  function initKeyboardNavigation() {
+    // Handle Escape key to close mobile menu
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.body.classList.contains('mobile-nav-active')) {
+        document.body.classList.remove('mobile-nav-active');
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        if (mobileNavToggle) {
+          mobileNavToggle.setAttribute('aria-expanded', 'false');
+          const icon = mobileNavToggle.querySelector('i');
+          if (icon) {
+            icon.classList.remove('icofont-close');
+            icon.classList.add('icofont-navigation-menu');
+          }
+        }
+      }
+    });
+
+    // Handle Tab navigation for theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          themeToggle.click();
+        }
+      });
+    }
+  }
+
+  // ========================================
+  // LAZY LOADING FOR IMAGES
+  // ========================================
+  function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+            }
+            img.classList.add('loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      lazyImages.forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+  }
+
+  // ========================================
+  // UPDATE THEME TOGGLE TEXT
+  // ========================================
+  function updateThemeToggleText(theme) {
+    const themeToggleText = document.querySelector('.theme-toggle-text');
+    if (themeToggleText) {
+      themeToggleText.textContent = theme === 'light' ? 'Light Mode' : 'Dark Mode';
+    }
+  }
+
+  // Update theme toggle text when theme changes
+  const originalUpdateThemeIcon = window.updateThemeIcon;
+  if (typeof originalUpdateThemeIcon === 'function') {
+    window.updateThemeIcon = function(theme, icon) {
+      originalUpdateThemeIcon(theme, icon);
+      updateThemeToggleText(theme);
+    };
+  }
 
 })(jQuery);

@@ -48,6 +48,11 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Page scroll progress">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
   <!-- ======= Header ======= -->
   <header id="header" class="header-tops">
     <div class="container">
@@ -66,84 +71,107 @@
               <span class="typing-text">Unity Developer & AR/VR Specialist</span>
             </div>
             <p class="hero-tagline">Crafting immersive game experiences with cutting-edge technology</p>
+            
+            <!-- Call-to-Action Buttons -->
+            <div class="hero-cta">
+              <a href="#portfolio" class="cta-button cta-primary">
+                <span>View My Work</span>
+                <i class="bx bx-right-arrow-alt"></i>
+              </a>
+              <a href="#contacts" class="cta-button cta-secondary">
+                <span>Let's Connect</span>
+                <i class="bx bx-envelope"></i>
+              </a>
+              <a href="Sanjit Kulkarni Resume.pdf" download="Sanjit Kulkarni Resume.pdf" class="cta-button cta-resume">
+                <span>Download Resume</span>
+                <i class="bx bx-download"></i>
+              </a>
+            </div>
           </div>
           
           <!-- Specializations Grid -->
-          <div class="specializations-grid">
-            <div class="spec-card" data-spec="unity">
-              <div class="spec-icon">
-                <i class="bx bx-code-alt"></i>
-              </div>
-              <div class="spec-content">
-                <h3>Unity Developer</h3>
-                <div class="spec-progress">
-                  <div class="spec-progress-bar">
-                    <div class="spec-progress-fill" data-progress="95"></div>
+          <div class="specializations-grid-wrapper">
+            <div class="specializations-grid">
+              <div class="spec-card spec-card-featured" data-spec="unity" data-progress="95">
+                <div class="spec-icon">
+                  <i class="bx bx-code-alt"></i>
+                </div>
+                <div class="spec-content">
+                  <h3>Unity Developer</h3>
+                  <div class="spec-progress">
+                    <div class="spec-progress-bar">
+                      <div class="spec-progress-fill" data-progress="95"></div>
+                    </div>
+                    <span class="spec-percentage">95%</span>
                   </div>
-                  <span class="spec-percentage">95%</span>
+                </div>
+              </div>
+              
+              <div class="spec-card spec-card-featured" data-spec="csharp" data-progress="90">
+                <div class="spec-icon">
+                  <i class="bx bx-code"></i>
+                </div>
+                <div class="spec-content">
+                  <h3>C# Mastery</h3>
+                  <div class="spec-progress">
+                    <div class="spec-progress-bar">
+                      <div class="spec-progress-fill" data-progress="90"></div>
+                    </div>
+                    <span class="spec-percentage">90%</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="spec-card spec-card-hidden" data-spec="arvr" data-progress="88">
+                <div class="spec-icon">
+                  <i class="bx bx-cube"></i>
+                </div>
+                <div class="spec-content">
+                  <h3>AR/VR Skills</h3>
+                  <div class="spec-progress">
+                    <div class="spec-progress-bar">
+                      <div class="spec-progress-fill" data-progress="88"></div>
+                    </div>
+                    <span class="spec-percentage">88%</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="spec-card spec-card-hidden" data-spec="web3" data-progress="85">
+                <div class="spec-icon">
+                  <i class="bx bx-network-chart"></i>
+                </div>
+                <div class="spec-content">
+                  <h3>Web3 Expert</h3>
+                  <div class="spec-progress">
+                    <div class="spec-progress-bar">
+                      <div class="spec-progress-fill" data-progress="85"></div>
+                    </div>
+                    <span class="spec-percentage">85%</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="spec-card spec-card-hidden" data-spec="multiplayer" data-progress="82">
+                <div class="spec-icon">
+                  <i class="bx bx-server"></i>
+                </div>
+                <div class="spec-content">
+                  <h3>Multiplayer Dev</h3>
+                  <div class="spec-progress">
+                    <div class="spec-progress-bar">
+                      <div class="spec-progress-fill" data-progress="82"></div>
+                    </div>
+                    <span class="spec-percentage">82%</span>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            <div class="spec-card" data-spec="csharp">
-              <div class="spec-icon">
-                <i class="bx bx-code"></i>
-              </div>
-              <div class="spec-content">
-                <h3>C# Mastery</h3>
-                <div class="spec-progress">
-                  <div class="spec-progress-bar">
-                    <div class="spec-progress-fill" data-progress="90"></div>
-                  </div>
-                  <span class="spec-percentage">90%</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="spec-card" data-spec="arvr">
-              <div class="spec-icon">
-                <i class="bx bx-cube"></i>
-              </div>
-              <div class="spec-content">
-                <h3>AR/VR Skills</h3>
-                <div class="spec-progress">
-                  <div class="spec-progress-bar">
-                    <div class="spec-progress-fill" data-progress="88"></div>
-                  </div>
-                  <span class="spec-percentage">88%</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="spec-card" data-spec="web3">
-              <div class="spec-icon">
-                <i class="bx bx-network-chart"></i>
-              </div>
-              <div class="spec-content">
-                <h3>Web3 Expert</h3>
-                <div class="spec-progress">
-                  <div class="spec-progress-bar">
-                    <div class="spec-progress-fill" data-progress="85"></div>
-                  </div>
-                  <span class="spec-percentage">85%</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="spec-card" data-spec="multiplayer">
-              <div class="spec-icon">
-                <i class="bx bx-server"></i>
-              </div>
-              <div class="spec-content">
-                <h3>Multiplayer Dev</h3>
-                <div class="spec-progress">
-                  <div class="spec-progress-bar">
-                    <div class="spec-progress-fill" data-progress="82"></div>
-                  </div>
-                  <span class="spec-percentage">82%</span>
-                </div>
-              </div>
-            </div>
+            <button class="spec-expand-btn" aria-label="Show more skills">
+              <span class="expand-text">Show More</span>
+              <span class="collapse-text" style="display: none;">Show Less</span>
+              <i class="bx bx-chevron-down expand-icon"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -160,15 +188,42 @@
         </ul>
       </nav><!-- .nav-menu -->
 
+      <!-- Mobile Navigation Toggle -->
+      <button class="mobile-nav-toggle d-lg-none" aria-label="Toggle mobile menu" aria-expanded="false">
+        <i class="icofont-navigation-menu"></i>
+      </button>
+
+      <!-- Mobile Navigation Menu -->
+      <nav class="mobile-nav d-lg-none" aria-label="Mobile navigation">
+        <ul>
+          <li class="active"><a href="#header"><span>Home</span></a></li>
+          <li><a href="#about"><span>About</span></a></li>
+          <li><a href="#experience"><span>Experience</span></a></li>
+          <li><a href="#education"><span>Education</span></a></li>
+          <li><a href="#portfolio"><span>Projects</span></a></li>
+          <li><a href="#skills"><span>Skills</span></a></li>
+          <li><a href="Sanjit Kulkarni Resume.pdf" download="Sanjit Kulkarni Resume.pdf" target="_blank"><span>Resume</span></a></li>
+          <li><a href="#contacts"><span>Contact</span></a></li>
+        </ul>
+      </nav>
+      <div class="mobile-nav-overly"></div>
+
       <div class="social-links">
-          <a href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/admiralxeon" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-          <a href="mailto:sanjit.kulkarni.2018@gmail.com" target="_blank" class="google"><i class="bx bxl-google"></i></a>
+          <a href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" rel="noopener noreferrer" class="linkedin" aria-label="Visit my LinkedIn profile" title="LinkedIn">
+            <i class="bx bxl-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com/admiralxeon" target="_blank" rel="noopener noreferrer" class="github" aria-label="Visit my GitHub profile" title="GitHub">
+            <i class="bx bxl-github" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:sanjit.kulkarni.2018@gmail.com" target="_blank" rel="noopener noreferrer" class="google" aria-label="Send me an email" title="Email">
+            <i class="bx bxl-google" aria-hidden="true"></i>
+          </a>
       </div>
       
       <!-- Theme Toggle Button -->
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-        <i class="bx bx-sun" id="theme-icon"></i>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
+        <i class="bx bx-sun" id="theme-icon" aria-hidden="true"></i>
+        <span class="theme-toggle-text" aria-hidden="true">Dark Mode</span>
       </button>
     </div>
   </header><!-- End Header -->
@@ -183,27 +238,40 @@
 
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
-          <img src="assets/img/profile.jpeg" class="img-fluid" alt="">
+          <img src="assets/img/profile.jpeg" class="img-fluid" alt="Sanjit Kulkarni - Unity Developer and AR/VR Specialist" loading="lazy">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <p>Passionate and results-driven Unity Developer with over 3 years of hands-on experience in crafting immersive game experiences using Unity,
-             AR/VR, and Web3 technologies. Adept at designing engaging gameplay systems, integrating blockchain features like NFTs and smart contracts,
-              and deploying cross-platform games. Skilled in leveraging tools like Vuforia, REST APIs to build high-performance, interactive applications.
-               Committed to continuous growth and eager to bring technical excellence, creativity,
-                and a collaborative mindset to cutting-edge game development projects.
-          </p>
-          <div class="row">
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 27th October 1996</li>
-                <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong> +91 8291598942</li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="icofont-rounded-right"></i> <strong>City:</strong> Mumbai, Maharashtra</li>
-                <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> sanjit.kulkarni.2018@gmail.com </li>
-              </ul>
+          <div class="about-bio">
+            <p>Passionate and results-driven Unity Developer with over 3 years of hands-on experience in crafting immersive game experiences using Unity,
+               AR/VR, and Web3 technologies. Adept at designing engaging gameplay systems, integrating blockchain features like NFTs and smart contracts,
+                and deploying cross-platform games. Skilled in leveraging tools like Vuforia, REST APIs to build high-performance, interactive applications.
+                 Committed to continuous growth and eager to bring technical excellence, creativity,
+                  and a collaborative mindset to cutting-edge game development projects.
+            </p>
+          </div>
+          
+          <div class="about-resume-cta">
+            <a href="Sanjit Kulkarni Resume.pdf" download="Sanjit Kulkarni Resume.pdf" class="resume-download-btn">
+              <i class="bx bx-download"></i>
+              <span>Download Resume</span>
+            </a>
+          </div>
+          
+          <div class="about-contact-info">
+            <h3 class="contact-info-title">Contact Information</h3>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 27th October 1996</li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong> <a href="tel:+918291598942">+91 8291598942</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="icofont-rounded-right"></i> <strong>City:</strong> Mumbai, Maharashtra</li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> <a href="mailto:sanjit.kulkarni.2018@gmail.com">sanjit.kulkarni.2018@gmail.com</a></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -350,12 +418,22 @@
       <div class="row portfolio-container">
 
         <!-- Snooker Aid App -->
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-tech="Unity • AR • C#">
-          <center><h4>Snooker Aid App</h4></center>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" 
+             data-tech="Unity • AR • C#" 
+             data-title="Snooker Aid App"
+             data-description="An AR-powered snooker training application that helps players improve their game through real-time shot analysis and guidance using augmented reality technology."
+             data-video="https://drive.google.com/file/d/1ke0oRsVJMih0vePJUE9ZhAPUnruYkUAo/view?usp=sharing"
+             data-github=""
+             data-demo="">
           <div class="portfolio-wrap">
-            <img src="assets/img/project/snooker.png" class="img-fluid" alt="Snooker Aid App">
+            <img src="assets/img/project/snooker.png" class="img-fluid" alt="Snooker Aid App - AR-powered snooker training application" loading="lazy">
             <div class="portfolio-info">
+              <h4>Snooker Aid App</h4>
+              <p class="portfolio-tech-tags">Unity • AR • C#</p>
               <div class="portfolio-links">
+                <a href="#" class="portfolio-view-btn" data-project="snooker" title="View Details">
+                  <i class="bx bx-search-alt"></i>
+                </a>
                 <a href="https://drive.google.com/file/d/1ke0oRsVJMih0vePJUE9ZhAPUnruYkUAo/view?usp=sharing" target="_blank" title="Video Demo">
                   <i class="bx bx-play-circle"></i>
                 </a>
@@ -365,12 +443,22 @@
         </div>
 
         <!-- Color Shoot -->
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-tech="Unity • 2D • Mobile">
-          <center><h4>Color Shoot</h4></center>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" 
+             data-tech="Unity • 2D • Mobile"
+             data-title="Color Shoot"
+             data-description="A fast-paced 2D mobile game featuring color-based shooting mechanics. Players must match colors to score points in this addictive arcade-style game."
+             data-video="https://drive.google.com/file/d/1kEDtxDQ-jaNe_e65iU94x9o94mwsLKN1/view?usp=sharing"
+             data-github=""
+             data-demo="">
           <div class="portfolio-wrap">
-            <img src="assets/img/project/shoot.png" class="img-fluid" alt="Color Shoot Game">
+            <img src="assets/img/project/shoot.png" class="img-fluid" alt="Color Shoot Game - Fast-paced 2D mobile game" loading="lazy">
             <div class="portfolio-info">
+              <h4>Color Shoot</h4>
+              <p class="portfolio-tech-tags">Unity • 2D • Mobile</p>
               <div class="portfolio-links">
+                <a href="#" class="portfolio-view-btn" data-project="colorshoot" title="View Details">
+                  <i class="bx bx-search-alt"></i>
+                </a>
                 <a href="https://drive.google.com/file/d/1kEDtxDQ-jaNe_e65iU94x9o94mwsLKN1/view?usp=sharing" target="_blank" title="Video Demo">
                   <i class="bx bx-play-circle"></i>
                 </a>
@@ -380,12 +468,22 @@
         </div>
 
         <!-- AR Insurance App -->
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-tech="Unity • AR • Vuforia">
-          <center><h4>AR Insurance App</h4></center>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" 
+             data-tech="Unity • AR • Vuforia"
+             data-title="AR Insurance App"
+             data-description="An innovative AR application for insurance visualization. Uses Vuforia for image recognition to display interactive policy information and coverage details in augmented reality."
+             data-video="https://drive.google.com/file/d/1ycWSX1durtHzH4S4ckroBU63Wz2OpzD-/view?usp=sharing"
+             data-github=""
+             data-demo="">
           <div class="portfolio-wrap">
-            <img src="assets/img/project/insurance.png" class="img-fluid" alt="AR Insurance Application">
+            <img src="assets/img/project/insurance.png" class="img-fluid" alt="AR Insurance Application - Interactive insurance visualization using Vuforia" loading="lazy">
             <div class="portfolio-info">
+              <h4>AR Insurance App</h4>
+              <p class="portfolio-tech-tags">Unity • AR • Vuforia</p>
               <div class="portfolio-links">
+                <a href="#" class="portfolio-view-btn" data-project="insurance" title="View Details">
+                  <i class="bx bx-search-alt"></i>
+                </a>
                 <a href="https://drive.google.com/file/d/1ycWSX1durtHzH4S4ckroBU63Wz2OpzD-/view?usp=sharing" target="_blank" title="Video Demo">
                   <i class="bx bx-play-circle"></i>
                 </a>
@@ -395,12 +493,22 @@
         </div>
 
         <!-- AR Based Physics Game -->
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-tech="Unity • AR • Physics">
-          <center><h4>AR Based Physics Game</h4></center>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" 
+             data-tech="Unity • AR • Physics"
+             data-title="AR Based Physics Game"
+             data-description="An educational AR game that demonstrates physics principles through interactive augmented reality experiences. Players interact with virtual objects following real-world physics laws."
+             data-video="https://drive.google.com/file/d/13oJpF69EmS_IUWTilxF6RB5EoPSs0krT/view?usp=sharing"
+             data-github=""
+             data-demo="">
           <div class="portfolio-wrap">
-            <img src="assets/img/project/physics.png" class="img-fluid" alt="AR Physics Game">
+            <img src="assets/img/project/physics.png" class="img-fluid" alt="AR Physics Game - Educational AR game demonstrating physics principles" loading="lazy">
             <div class="portfolio-info">
+              <h4>AR Based Physics Game</h4>
+              <p class="portfolio-tech-tags">Unity • AR • Physics</p>
               <div class="portfolio-links">
+                <a href="#" class="portfolio-view-btn" data-project="physics" title="View Details">
+                  <i class="bx bx-search-alt"></i>
+                </a>
                 <a href="https://drive.google.com/file/d/13oJpF69EmS_IUWTilxF6RB5EoPSs0krT/view?usp=sharing" target="_blank" title="Video Demo">
                   <i class="bx bx-play-circle"></i>
                 </a>
@@ -409,6 +517,32 @@
           </div>
         </div>
 
+      </div>
+      
+      <!-- Project Modal -->
+      <div id="portfolio-modal" class="portfolio-modal">
+        <div class="portfolio-modal-content">
+          <span class="portfolio-modal-close">&times;</span>
+          <div class="portfolio-modal-body">
+            <img id="modal-image" src="" alt="" class="modal-image">
+            <div class="modal-info">
+              <h2 id="modal-title"></h2>
+              <div class="modal-tech-stack" id="modal-tech"></div>
+              <p id="modal-description"></p>
+              <div class="modal-links">
+                <a id="modal-video-link" href="#" target="_blank" class="modal-link-btn">
+                  <i class="bx bx-play-circle"></i> Video Demo
+                </a>
+                <a id="modal-github-link" href="#" target="_blank" class="modal-link-btn" style="display: none;">
+                  <i class="bx bxl-github"></i> GitHub
+                </a>
+                <a id="modal-demo-link" href="#" target="_blank" class="modal-link-btn" style="display: none;">
+                  <i class="bx bx-link-external"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -456,8 +590,8 @@
             </div>
             
             <p class="skill-logos"> 
-              <img src="https://camo.githubusercontent.com/4cfc29edabb061eef5572b532a0c17e43d5d7a2a50074171e849290e00212d32/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f632f63342f556e6974795f323032312e737667" alt="Unity" height="40" width="80">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Unreal_Engine_Logo.svg" alt="Unreal" height="40" width="100">
+              <img src="https://camo.githubusercontent.com/4cfc29edabb061eef5572b532a0c17e43d5d7a2a50074171e849290e00212d32/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f632f63342f556e6974795f323032312e737667" alt="Unity game engine logo" height="40" width="80" loading="lazy">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Unreal_Engine_Logo.svg" alt="Unreal Engine logo" height="40" width="100" loading="lazy">
             </p>
           </div>
 
@@ -494,8 +628,8 @@
             </div>
             
             <p class="skill-logos">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/C-Sharp_Logo.svg" alt="C#" height="40" width="60">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++" height="40" width="60"> 
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/C-Sharp_Logo.svg" alt="C# programming language logo" height="40" width="60" loading="lazy">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ programming language logo" height="40" width="60" loading="lazy"> 
             </p>
           </div>
 
@@ -518,8 +652,8 @@
             </div>
             
             <p class="skill-logos">
-              <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg" alt="Git">
-              <img src="https://www.vectorlogo.zone/logos/github/github-ar21.svg" alt="GitHub">
+              <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg" alt="Git version control logo" loading="lazy">
+              <img src="https://www.vectorlogo.zone/logos/github/github-ar21.svg" alt="GitHub logo" loading="lazy">
             </p>
           </div>
 
@@ -570,8 +704,8 @@
             </div>
             
             <p class="skill-logos">
-              <img src="rest-api-blue-logo-22098.png" alt="REST API" height="40" width="60">
-              <img src="https://images.seeklogo.com/logo-png/43/1/web3-logo-png_seeklogo-436086.png" alt="Web3" height="40" width="60">
+              <img src="rest-api-blue-logo-22098.png" alt="REST API logo" height="40" width="60" loading="lazy">
+              <img src="https://images.seeklogo.com/logo-png/43/1/web3-logo-png_seeklogo-436086.png" alt="Web3 logo" height="40" width="60" loading="lazy">
             </p>
           </div>
 
@@ -626,9 +760,9 @@
             <i class="bx bx-share-alt"></i>
             <h3>Social Profiles</h3>
             <div class="social-links">
-              <a href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              <a href="https://github.com/admiralxeon" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-              <a href="mailto:sanjit.kulkarni.2018@gmail.com" target="_blank" class="google"><i class="bx bxl-google"></i></a>
+              <a href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" rel="noopener noreferrer" class="linkedin" aria-label="Visit my LinkedIn profile" title="LinkedIn"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+              <a href="https://github.com/admiralxeon" target="_blank" rel="noopener noreferrer" class="github" aria-label="Visit my GitHub profile" title="GitHub"><i class="bx bxl-github" aria-hidden="true"></i></a>
+              <a href="mailto:sanjit.kulkarni.2018@gmail.com" target="_blank" rel="noopener noreferrer" class="google" aria-label="Send me an email" title="Email"><i class="bx bxl-google" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
