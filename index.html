@@ -29,7 +29,7 @@
   <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style_neon_retro.css" rel="stylesheet">
+  <link href="assets/css/style_scrollable.css" rel="stylesheet">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169007209-3"></script>
@@ -174,19 +174,21 @@
   </header><!-- End Header -->
 
   <!-- ======= About Section ======= -->
-  <section id="about" class="about">
+  <section id="about" class="about" data-parallax="false">
+    <div class="parallax-bg parallax-bg-1"></div>
     <!-- ======= About Me ======= -->
     <div class="about-me container">
       <div class="section-title mt-4">
         <h2>About</h2>
       </div>
+      
 
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
           <img src="assets/img/profile.jpeg" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <p>Passionate and results-driven Unity Developer with over 3 years of hands-on experience in crafting immersive game experiences using Unity,
+          <p>Passionate and results-driven Unity Developer with over 5 years of hands-on experience in crafting immersive game experiences using Unity,
              AR/VR, and Web3 technologies. Adept at designing engaging gameplay systems, integrating blockchain features like NFTs and smart contracts,
               and deploying cross-platform games. Skilled in leveraging tools like Vuforia, REST APIs to build high-performance, interactive applications.
                Committed to continuous growth and eager to bring technical excellence, creativity,
@@ -212,7 +214,7 @@
   </section><!-- End About Section -->
 
   <!-- ======= Education Section ======= -->
-  <section id="education" class="services">
+  <section id="education" class="services" data-parallax="false">
     <div class="container">
       <div class="section-title mt-4">
         <h2>Education</h2>
@@ -244,7 +246,7 @@
   <!-- End Education Section -->
 
   <!-- Start Experience Section -->
-  <section id="experience" class="services">
+  <section id="experience" class="services" data-parallax="false">
     <div class="container">
       <div class="section-title mt-4">
         <h2>Experience</h2>
@@ -256,9 +258,10 @@
                 <h5>January 2023 - PRESENT</h5>
                 <p><em>Game Developer</em></p>
                 <ul>
-                  <li>Developed a 2D Web3-integrated car racing game, leveraging REST APIs, Web3 SDKs, and smart contracts, resulting in seamless blockchain-based transactions.</li>
-                  <li>Deployed the game on Android and WebGL, optimizing performance by 20% and integrating secure payment gateways for crypto transactions.</li>
-                  <li>Key Achievement: Increased user engagement by 30% by implementing real-time NFT rewards and dynamic leaderboard mechanics.</li>
+                <li>Developed a 2D Web3-integrated car racing game, leveraging REST APIs, Web3 SDKs, and smart contracts, resulting in seamless blockchain-based transactions.</li>
+                <li>Deployed the game on Android and WebGL, optimizing performance by 20% and integrating secure payment gateways for crypto transactions.</li>
+                <li>Key Achievement: Increased user engagement by 30% by implementing real-time NFT rewards and dynamic leaderboard mechanics.</li>
+                <li><span class="achievement-badge">🏆 Unity Expert</span> <span class="achievement-badge">🎮 Web3 Gaming</span> <span class="achievement-badge">📱 Cross-Platform</span></li>
                 </ul>
               </div>
           </div>
@@ -274,6 +277,7 @@
                 <li>Designed an interactive AR experience using Vuforia and real-time physics, simulating daily tasks to improve user engagement by 25%.</li>
                 <li>Engineered a real-time image scanning system for AR applications, reducing detection lag by 40% and enhancing dynamic target tracking.</li>
                 <li>Key Achievement: Spearheaded an AR-based insurance prototype, improving user interaction by 30% through optimized image recognition and animated policy visualization.</li>
+                <li><span class="achievement-badge">🥽 AR/VR Specialist</span> <span class="achievement-badge">⚡ Performance Optimizer</span></li>
               </ul>
             </div>
         </div>
@@ -289,6 +293,7 @@
               <li>Designed and developed 5+ in-house Unity games, incorporating educational storytelling and physics-based challenges.</li>
               <li>Mentored 10+ student teams in game development, improving project completion rates by 40% and enhancing time management skills.</li>
               <li>Key Achievement: Mastered Roblox Studio within 2 months, leading student-driven game projects that enhanced learning outcomes in a gamified environment.</li>
+              <li><span class="achievement-badge">🎓 Educator</span> <span class="achievement-badge">🚀 Rapid Learner</span> <span class="achievement-badge">👥 Team Leader</span></li>
             </ul>
           </div>
         </div>
@@ -335,7 +340,8 @@
   <!-- End Experience Section -->
 
   <!-- Start Project Section -->
-  <section id="portfolio" class="portfolio">
+  <section id="portfolio" class="portfolio" data-parallax="false">
+    <div class="parallax-bg parallax-bg-2"></div>
     <div class="container">
       <div class="section-title mt-4">
         <h2>Projects</h2>
@@ -415,7 +421,7 @@
   <!-- End Project Section -->
 
   <!-- Start Skills Section -->
-  <section id="skills" class="services mt-4">
+  <section id="skills" class="services mt-4" data-parallax="false">
     <div class="container">
       <div class="section-title">
         <h2>Skills</h2>
@@ -582,18 +588,18 @@
   <!-- End Skills Section -->
 
   <!-- Start Links section -->
-  <section id="links" class="services">
+  <section id="links" class="services" data-parallax="false">
     <div class="container">
       <div class="section-title mt-4">
         <h2>Resume & Links</h2>
       </div>
       <div class="row">
-        <div class="col-md-3 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-          <a download="Sanjit Kulkarni Resume.pdf"  target="_blank"><div class="icon"><i class="icofont-page"></i></div></a>
-          <h4 class="title"><a download="Sanjit Kulkarni Resume.pdf" target="_blank">Resume</a></h4>
+        <div class="col-md-3 mt-4 mt-md-0 icon-box resume-box" data-aos="fade-up" data-aos-delay="100" onclick="downloadResume()" style="cursor: pointer;">
+          <a href="Sanjit Kulkarni Resume.pdf" download="Sanjit Kulkarni Resume.pdf" onclick="event.stopPropagation();"><div class="icon"><i class="icofont-page"></i></div></a>
+          <h4 class="title"><a href="Sanjit Kulkarni Resume.pdf" download="Sanjit Kulkarni Resume.pdf" onclick="event.stopPropagation();">Resume</a></h4>
           <p class="description">The link contains downloadable resume</p>
         </div>
-        <div class="col-md-3 mt-4 mt-md-0 icon-box" data-aos="fade-up">
+        <div class="col-md-3 mt-4 mt-md-0 icon-box github-box" data-aos="fade-up">
           <a href="https://github.com/admiralxeon" target="_blank"><div class="icon"><i class="icofont-link"></i></div></a>
           <h4 class="title"><a href="https://github.com/admiralxeon" target="_blank">GitHub Repository</a></h4>
           <p class="description">The github repository contains my projects.</p>
@@ -603,7 +609,7 @@
   </section> <!--End Links Section -->
 
   <!-- Start Contact Section -->
-  <section id="contacts" class="contact">
+  <section id="contacts" class="contact" data-parallax="false">
     <div class="container">
       <div class="section-title mt-4">
         <h2>Contact</h2>
@@ -667,9 +673,60 @@
   <script type="text/javascript">
     // Modern hero section loaded
     console.log('✨ Modern hero section loaded');
+    
+    // Resume download handler
+    function downloadResume() {
+      const link = document.createElement('a');
+      link.href = 'Sanjit Kulkarni Resume.pdf';
+      link.download = 'Sanjit Kulkarni Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   </script>
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main_scrollable.js"></script>
+  
+  <!-- Snake Game -->
+  <script src="assets/js/snake-game.js"></script>
+
+  <!-- Floating Game Button -->
+  <button class="game-button" onclick="openSnakeGame()" aria-label="Play Snake Game" title="Play Snake Game">
+    <i class="bx bx-game"></i>
+  </button>
+
+  <!-- Snake Game Modal -->
+  <div id="snake-game-modal">
+    <div class="game-container">
+      <div class="game-header">
+        <h2 class="game-title">🐍 Snake Game</h2>
+        <button class="game-close" onclick="closeSnakeGame()" aria-label="Close game">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      
+      <div class="game-score-container">
+        <span class="game-score-label">Score:</span>
+        <span class="game-score-value" id="snake-score">0</span>
+      </div>
+      
+      <canvas id="snake-canvas"></canvas>
+      
+      <div class="game-controls">
+        <button class="game-btn start" id="snake-start-btn" onclick="startSnakeGame()">Start Game</button>
+        <button class="game-btn" onclick="restartSnakeGame()">Restart</button>
+      </div>
+      
+      <div id="snake-game-over" style="display: none;">
+        Game Over! Your score: <span id="final-score">0</span>
+      </div>
+      
+      <div class="game-instructions">
+        <strong>Controls:</strong> Use arrow keys or swipe on mobile<br>
+        Collect the pink food to grow and score points!
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

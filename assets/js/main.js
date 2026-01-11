@@ -7,7 +7,7 @@
 !(function($) {
   "use strict";
 
-  // Nav Menu
+  // Nav Menu - Smooth Scroll Navigation
   $(document).on('click', '.nav-menu a, .mobile-nav a', function(e) {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var hash = this.hash;
@@ -20,21 +20,22 @@
           $(this).closest('li').addClass('active');
         }
 
+        // Smooth scroll to target
+        var headerOffset = $('#header').hasClass('header-top') ? 90 : 0;
+        var elementPosition = target.offset().top;
+        var offsetPosition = elementPosition - headerOffset;
+
+        $('html, body').animate({
+          scrollTop: offsetPosition
+        }, 800, 'swing');
+
+        // Update header state
         if (hash == '#header') {
           $('#header').removeClass('header-top');
-          $("section").removeClass('section-show');
-          return;
-        }
-
-        if (!$('#header').hasClass('header-top')) {
-          $('#header').addClass('header-top');
-          setTimeout(function() {
-            $("section").removeClass('section-show');
-            $(hash).addClass('section-show');
-          }, 350);
         } else {
-          $("section").removeClass('section-show');
-          $(hash).addClass('section-show');
+          if (!$('#header').hasClass('header-top')) {
+            $('#header').addClass('header-top');
+          }
         }
 
         if ($('body').hasClass('mobile-nav-active')) {
@@ -48,17 +49,23 @@
     }
   });
 
-  // Activate/show sections on load with hash links
+  // Handle hash links on page load
   if (window.location.hash) {
     var initial_nav = window.location.hash;
     if ($(initial_nav).length) {
       $('#header').addClass('header-top');
       $('.nav-menu .active, .mobile-nav .active').removeClass('active');
       $('.nav-menu, .mobile-nav').find('a[href="' + initial_nav + '"]').parent('li').addClass('active');
+      
       setTimeout(function() {
-        $("section").removeClass('section-show');
-        $(initial_nav).addClass('section-show');
-      }, 350);
+        var headerOffset = 90;
+        var elementPosition = $(initial_nav).offset().top;
+        var offsetPosition = elementPosition - headerOffset;
+        
+        $('html, body').animate({
+          scrollTop: offsetPosition
+        }, 800);
+      }, 100);
     }
   }
 
@@ -479,6 +486,9 @@
       initKeyboardNavigation();
       initPerformanceMonitoring();
       createParticleSystem();
+      initParallaxEffects();
+      initGameElements();
+      initScrollSpy();
       
       console.log('🎮 Enhanced Portfolio loaded successfully!');
     }, 500);
@@ -816,5 +826,235 @@
   $(document).ready(function() {
     initThemeSwitcher();
   });
+
+  // ========================================
+  // PARALLAX EFFECTS
+  // ========================================
+  function initParallaxEffects() {
+    const parallaxElements = document.querySelectorAll('[data-parallax="true"]');
+    const parallaxBgs = document.querySelectorAll('.parallax-bg');
+    
+    let ticking = false;
+    
+    function updateParallax() {
+      const scrolled = window.pageYOffset;
+      
+      parallaxElements.forEach(element => {
+        const speed = element.dataset.speed || 0.5;
+        const yPos = -(scrolled * speed);
+        element.style.transform = `translateY(${yPos}px)`;
+      });
+      
+      // Parallax background layers
+      parallaxBgs.forEach((bg, index) => {
+        const section = bg.closest('section');
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          const speed = (index + 1) * 0.3;
+          
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const yPos = -(scrolled * speed);
+            bg.style.transform = `translateY(${yPos}px)`;
+          }
+        }
+      });
+      
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+    
+    // Initial call
+    updateParallax();
+  }
+
+  // ========================================
+  // GAME ELEMENTS
+  // ========================================
+  function initGameElements() {
+    // Create game controller icon
+    createGameController();
+    
+    // Create floating particles
+    createGameParticles();
+    
+    // Animate stats counters
+    animateGameStats();
+  }
+
+  function createGameController() {
+    const controller = document.createElement('div');
+    controller.className = 'game-controller';
+    controller.innerHTML = '<i class="bx bx-game"></i>';
+    controller.title = 'Game Developer';
+    controller.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.body.appendChild(controller);
+  }
+
+  function createGameParticles() {
+    const particleContainer = document.createElement('div');
+    particleContainer.className = 'game-particles';
+    
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'game-particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 10 + 's';
+      particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      particleContainer.appendChild(particle);
+    }
+    
+    document.body.appendChild(particleContainer);
+  }
+
+  function animateGameStats() {
+    const statValues = document.querySelectorAll('.game-stat-value');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          let finalValue = target.textContent;
+          
+          // Extract number from text (handles "10+" format)
+          const match = finalValue.match(/(\d+)/);
+          if (match) {
+            finalValue = parseInt(match[1]);
+            const elementId = target.id || 'stat-' + Math.random().toString(36).substr(2, 9);
+            if (!target.id) target.id = elementId;
+            
+            // Only animate if it's a pure number (not already animated)
+            if (!target.dataset.animated) {
+              target.dataset.animated = 'true';
+              const originalText = target.textContent;
+              animateCounter(elementId, finalValue, 2000, originalText);
+            }
+          }
+          observer.unobserve(target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statValues.forEach(stat => {
+      if (!stat.id) {
+        stat.id = 'stat-' + Math.random().toString(36).substr(2, 9);
+      }
+      observer.observe(stat);
+    });
+  }
+  
+  function animateCounter(elementId, targetValue, duration, suffix = '') {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    
+    const startValue = 0;
+    const startTime = performance.now();
+    
+    function updateCounter(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
+      
+      element.textContent = currentValue + suffix;
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        element.textContent = targetValue + suffix;
+      }
+    }
+    
+    requestAnimationFrame(updateCounter);
+  }
+
+
+  // ========================================
+  // SCROLL SPY - Update active nav on scroll
+  // ========================================
+  function initScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+    
+    // Show header as fixed when scrolling past hero
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        if (!$('#header').hasClass('header-top')) {
+          $('#header').addClass('header-top');
+        }
+      } else {
+        if ($('#header').hasClass('header-top')) {
+          $('#header').removeClass('header-top');
+        }
+      }
+      
+      lastScroll = currentScroll;
+    });
+    
+    // Update active nav link based on scroll position
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          
+          navLinks.forEach(link => {
+            link.parentElement.classList.remove('active');
+            if (link.getAttribute('href') === '#' + id) {
+              link.parentElement.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+    
+    // Add fade-in animation to sections as they come into view
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('fade-in')) {
+          entry.target.classList.add('fade-in');
+          // Stop observing once animated
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Observe all sections except header
+    sections.forEach(section => {
+      if (section.id !== 'header') {
+        // Check if section is already in viewport on load
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          section.classList.add('fade-in');
+        } else {
+          sectionObserver.observe(section);
+        }
+      }
+    });
+  }
 
 })(jQuery);
