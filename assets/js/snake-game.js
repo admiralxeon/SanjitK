@@ -17,18 +17,18 @@ class SnakeGame {
     this.gameRunning = false;
     this.gameLoop = null;
     this.gameSpeed = 150;
-    
+
     this.init();
   }
 
   init() {
     this.canvas = document.getElementById('snake-canvas');
     if (!this.canvas) return;
-    
+
     this.ctx = this.canvas.getContext('2d');
     this.canvas.width = this.tileCount * this.gridSize;
     this.canvas.height = this.tileCount * this.gridSize;
-    
+
     this.setupEventListeners();
     this.draw();
   }
@@ -36,12 +36,12 @@ class SnakeGame {
   setupEventListeners() {
     document.addEventListener('keydown', (e) => {
       if (!this.gameRunning) return;
-      
+
       const LEFT_KEY = 37;
       const RIGHT_KEY = 39;
       const UP_KEY = 38;
       const DOWN_KEY = 40;
-      
+
       const keyPressed = e.keyCode;
       const goingUp = this.dy === -1;
       const goingDown = this.dy === 1;
@@ -79,13 +79,13 @@ class SnakeGame {
     this.canvas.addEventListener('touchend', (e) => {
       if (!touchStartX || !touchStartY || !this.gameRunning) return;
       e.preventDefault();
-      
+
       const touchEndX = e.changedTouches[0].clientX;
       const touchEndY = e.changedTouches[0].clientY;
-      
+
       const dx = touchEndX - touchStartX;
       const dy = touchEndY - touchStartY;
-      
+
       const goingUp = this.dy === -1;
       const goingDown = this.dy === 1;
       const goingRight = this.dx === 1;
@@ -110,7 +110,7 @@ class SnakeGame {
           this.dy = -1;
         }
       }
-      
+
       touchStartX = null;
       touchStartY = null;
     });
@@ -118,7 +118,7 @@ class SnakeGame {
 
   start() {
     if (this.gameRunning) return;
-    
+
     this.gameRunning = true;
     this.score = 0;
     this.snake = [{ x: 10, y: 10 }];
@@ -126,7 +126,7 @@ class SnakeGame {
     this.dy = 0;
     this.generateFood();
     this.updateScore();
-    
+
     this.gameLoop = setInterval(() => {
       this.update();
       this.draw();
@@ -155,6 +155,9 @@ class SnakeGame {
   update() {
     if (!this.gameRunning) return;
 
+    // Don't update if snake hasn't started moving
+    if (this.dx === 0 && this.dy === 0) return;
+
     const head = { x: this.snake[0].x + this.dx, y: this.snake[0].y + this.dy };
 
     // Check wall collision
@@ -178,7 +181,7 @@ class SnakeGame {
       this.score += 10;
       this.updateScore();
       this.generateFood();
-      
+
       // Increase speed slightly
       if (this.score % 50 === 0 && this.gameSpeed > 80) {
         this.gameSpeed -= 5;
@@ -215,7 +218,7 @@ class SnakeGame {
       this.ctx.moveTo(i * this.gridSize, 0);
       this.ctx.lineTo(i * this.gridSize, this.canvas.height);
       this.ctx.stroke();
-      
+
       this.ctx.beginPath();
       this.ctx.moveTo(0, i * this.gridSize);
       this.ctx.lineTo(this.canvas.width, i * this.gridSize);
@@ -226,7 +229,7 @@ class SnakeGame {
     this.snake.forEach((segment, index) => {
       const x = segment.x * this.gridSize;
       const y = segment.y * this.gridSize;
-      
+
       // Head has different color
       if (index === 0) {
         this.ctx.fillStyle = '#00ffff';
@@ -237,7 +240,7 @@ class SnakeGame {
         this.ctx.shadowBlur = 5;
         this.ctx.shadowColor = '#00ffff';
       }
-      
+
       this.ctx.fillRect(x + 2, y + 2, this.gridSize - 4, this.gridSize - 4);
     });
     this.ctx.shadowBlur = 0;
@@ -289,7 +292,7 @@ function openSnakeGame() {
     modal.style.display = 'flex';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
+
     // Initialize game if not already done
     if (!snakeGameInstance) {
       setTimeout(() => {
@@ -307,7 +310,7 @@ function closeSnakeGame() {
     modal.style.display = 'none';
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    
+
     if (snakeGameInstance) {
       snakeGameInstance.stop();
     }
