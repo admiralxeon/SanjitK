@@ -195,6 +195,10 @@ section {
   transform: translateY(-1px);
 }
 
+.btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
 .btn-primary {
   background: var(--color-accent);
   color: #fff;
@@ -347,6 +351,7 @@ section {
 }
 
 .nav-links a:not(.btn) {
+  position: relative;
   font-size: 0.92rem;
   color: var(--color-text-muted);
   transition: color 0.15s ease;
@@ -355,6 +360,25 @@ section {
 .nav-links a:not(.btn).is-active,
 .nav-links a:not(.btn):hover {
   color: var(--color-text);
+}
+
+/* Sliding underline, drawn with a scaleX transform so it animates from the left */
+.nav-links a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-links a:not(.btn).is-active::after,
+.nav-links a:not(.btn):hover::after {
+  transform: scaleX(1);
 }
 
 .nav-toggle {
@@ -401,6 +425,13 @@ section {
   height: 600px;
   background: radial-gradient(circle, rgba(99, 102, 241, 0.16), transparent 70%);
   pointer-events: none;
+  animation: glow-breathe 9s ease-in-out infinite;
+}
+
+/* Very slow, low-amplitude — meant to be felt more than seen */
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
 }
 
 .hero .container {
@@ -646,6 +677,13 @@ section {
   border-radius: var(--radius);
   background: var(--color-bg-elevated);
   padding: 1.5rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-group:hover {
+  border-color: var(--color-border-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(99, 102, 241, 0.1);
 }
 
 .skill-group h3 {
@@ -686,12 +724,13 @@ section {
   border-radius: var(--radius);
   background: var(--color-bg-elevated);
   padding: 1.5rem;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-card:hover {
   border-color: var(--color-border-strong);
   transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(99, 102, 241, 0.1);
 }
 
 .project-card .project-index {
@@ -749,6 +788,13 @@ section {
   gap: 0.5rem 1.5rem;
   background: var(--color-bg-elevated);
   padding: 1.1rem 1.5rem;
+  transition: background 0.2s ease;
+}
+
+/* A background shift rather than a lift: these rows sit in a tight grid
+   stack with a 1px gap, so translateY would overlap the row above/below. */
+.project-row:hover {
+  background: var(--color-bg-elevated-2);
 }
 
 .project-row h4 {
@@ -919,6 +965,25 @@ section {
 .footer-links a:hover {
   color: var(--color-text);
 }
+
+/* ==========================================================================
+   Staggered reveal
+   Grouped cards cascade in slightly offset instead of popping in together.
+   Pure CSS transition-delay, so it works whether .is-visible is added by
+   the scroll observer or by its timeout fallback in portfolio.js.
+   ========================================================================== */
+.skills-grid .skill-group:nth-child(2) { transition-delay: 0.08s; }
+.skills-grid .skill-group:nth-child(3) { transition-delay: 0.16s; }
+
+.work-featured .project-card:nth-child(2) { transition-delay: 0.08s; }
+.work-featured .project-card:nth-child(3) { transition-delay: 0.16s; }
+
+.work-secondary .project-row:nth-child(2) { transition-delay: 0.06s; }
+.work-secondary .project-row:nth-child(3) { transition-delay: 0.12s; }
+
+.timeline .timeline-item:nth-child(2) { transition-delay: 0.08s; }
+.timeline .timeline-item:nth-child(3) { transition-delay: 0.16s; }
+.timeline .timeline-item:nth-child(4) { transition-delay: 0.24s; }
 
 /* ==========================================================================
    Mobile nav (drawer)
