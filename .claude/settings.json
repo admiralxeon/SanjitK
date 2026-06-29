@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"C:\\\\Users\\\\Admin\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\h--Projects-SanjitK\\\\b2eb8ce4-9993-4d11-9250-c90f200cae28\\\\scratchpad\" 2>/dev/null; echo \"---\"; ls -la \"$HOME/Downloads\" 2>/dev/null | head -30)",
+      "Read(//c/Users/Admin/Downloads/**)",
+      "Bash(file self.png)",
+      "Bash(python3 -c ' *)",
+      "Bash(mkdir -p /tmp/shots)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --screenshot=/tmp/shots/desktop.png --window-size=1440,6200 \"http://localhost:8723/index.html\")",
+      "Read(//tmp/**)"
+    ]
+  }
+}
