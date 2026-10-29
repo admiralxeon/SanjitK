@@ -11,33 +11,61 @@
   <!-- End Google Tag Manager -->
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07070c">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0f1a">
 
   <title>Sanjit Kulkarni — AI/LLM Engineer</title>
-  <meta name="description" content="Sanjit Kulkarni — software engineer building AI/LLM applications, with 4+ years shipping real-time 3D and games.">
+  <meta name="description" content="Sanjit Kulkarni builds AI you can talk to, face to face: voice-first kiosks, live AI avatars and the LLM agents behind them, backed by 4+ years shipping real-time 3D.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sanjit Kulkarni — AI/LLM Engineer">
-  <meta property="og:description" content="Software engineer building AI/LLM applications, with 4+ years shipping real-time 3D and games.">
+  <meta property="og:description" content="AI you can talk to, face to face: voice-first kiosks, live AI avatars and the LLM agents behind them. Three demos inside.">
   <meta property="og:url" content="https://admiralxeon.github.io/SanjitK/">
+  <meta property="og:image" content="https://admiralxeon.github.io/SanjitK/assets/img/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Sanjit Kulkarni builds AI you can talk to, face to face, drawn with attention arcs.">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="canonical" href="https://admiralxeon.github.io/SanjitK/">
 
-  <!-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (labels) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sanjit Kulkarni",
+    "jobTitle": "AI/LLM Engineer",
+    "url": "https://admiralxeon.github.io/SanjitK/",
+    "email": "mailto:sanjit.kulkarni.2018@gmail.com",
+    "image": "https://admiralxeon.github.io/SanjitK/assets/img/self.jpg",
+    "address": { "@type": "PostalAddress", "addressLocality": "Mumbai", "addressCountry": "IN" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Mumbai University" },
+    "knowsAbout": ["Embodied AI", "Conversational AI avatars", "AI agents", "Large language models", "Claude API", "Tool calling", "Python", "Unreal Engine", "MetaHuman", "Unity", "Real-time 3D", "AR/VR"],
+    "sameAs": ["https://www.linkedin.com/in/sanjit-kulkarni/", "https://github.com/admiralxeon"]
+  }
+  </script>
+
+  <!-- Pick the colormap before first paint: saved choice, else light → cobalt, dark → viridis -->
+  <script>
+    (function () {
+      var c = null;
+      try { c = localStorage.getItem("cmap"); } catch (e) {}
+      if (!/^(viridis|cobalt|ember)$/.test(c || "")) {
+        c = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "cobalt" : "viridis";
+      }
+      document.documentElement.setAttribute("data-cmap", c);
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+
+  <!-- Fonts: Bricolage Grotesque (display), Atkinson Hyperlegible Next (body), Atkinson Hyperlegible Mono (labels and data) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Atkinson+Hyperlegible+Next:wght@400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link href="assets/css/portfolio.css" rel="stylesheet">
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169007209-3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-169007209-3');
-  </script>
+  <link href="assets/css/portfolio.css?v=2026-10-29g" rel="stylesheet">
+  <!-- Analytics: the old Universal Analytics tag (UA-169007209-3) was removed; UA stopped
+       collecting in July 2023. Add a GA4 tag inside Google Tag Manager (GTM-5BB8W2X above). -->
 </head>
 
 <body>
@@ -48,336 +76,273 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <a class="skip-link" href="#main-content">Skip to content</a>
+  <canvas id="stream" aria-hidden="true"></canvas>
 
-  <!-- Icon sprite: brand marks (linkedin/github) use fill, the rest use stroke. -->
-  <svg style="display:none" aria-hidden="true">
-    <symbol id="icon-linkedin" viewBox="0 0 16 16">
-      <path d="M14.82 0H1.18C.53 0 0 .53 0 1.18v13.64C0 15.47.53 16 1.18 16h13.64c.65 0 1.18-.53 1.18-1.18V1.18C16 .53 15.47 0 14.82 0ZM4.75 13.4H2.4V6.1h2.35v7.3ZM3.58 5.1c-.75 0-1.36-.61-1.36-1.36 0-.75.61-1.36 1.36-1.36.75 0 1.36.61 1.36 1.36 0 .75-.61 1.36-1.36 1.36ZM13.6 13.4h-2.35V9.9c0-.84-.02-1.92-1.17-1.92-1.17 0-1.35.91-1.35 1.86v3.56H6.38V6.1h2.26v1c.3-.57 1.04-1.17 2.14-1.17 2.29 0 2.72 1.51 2.72 3.47v3.99Z"/>
-    </symbol>
-    <symbol id="icon-github" viewBox="0 0 16 16">
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
-    </symbol>
-    <symbol id="icon-mail" viewBox="0 0 24 24">
-      <rect x="3" y="5" width="18" height="14" rx="2"/>
-      <path d="M3 7l9 6 9-6"/>
-    </symbol>
-    <symbol id="icon-arrow" viewBox="0 0 24 24">
-      <path d="M7 17 17 7"/>
-      <path d="M9 7h8v8"/>
-    </symbol>
-    <symbol id="icon-menu" viewBox="0 0 24 24">
-      <path d="M4 7h16M4 12h16M4 17h16"/>
-    </symbol>
-    <symbol id="icon-close" viewBox="0 0 24 24">
-      <path d="M6 6l12 12M18 6 6 18"/>
-    </symbol>
-  </svg>
-
-  <!-- ======= Header / Nav ======= -->
-  <header id="site-header" class="site-header">
-    <div class="container">
-      <a href="#hero" class="logo">Sanjit Kulkarni</a>
+  <!-- ======= Header ======= -->
+  <header class="site-header">
+    <div class="bar">
+      <a class="logo" href="#top">sanjit-1 <b>/ attention</b></a>
+      <span class="layer-ind" aria-hidden="true">layer <b id="layer">00</b> / 12</span>
       <nav aria-label="Primary">
-        <button id="nav-toggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
-          <svg class="icon icon-menu" aria-hidden="true"><use href="#icon-menu"></use></svg>
-          <svg class="icon icon-close" aria-hidden="true"><use href="#icon-close"></use></svg>
-        </button>
-        <ul id="nav-links" class="nav-links">
+        <ul class="nav-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
           <li><a href="#work">Work</a></li>
           <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact" class="btn btn-primary">Contact</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="cmap" role="group" aria-label="Colormap">
+        <span class="cmap-label">cmap</span>
+        <button type="button" data-cmap="viridis" aria-pressed="false"><i></i><span>viridis</span></button>
+        <button type="button" data-cmap="cobalt" aria-pressed="false"><i></i><span>cobalt</span></button>
+        <button type="button" data-cmap="ember" aria-pressed="false"><i></i><span>ember</span></button>
+      </div>
+      <button type="button" class="motion" id="motion"><i aria-hidden="true"></i><span>pause motion</span></button>
     </div>
   </header>
 
   <main id="main-content">
 
-    <!-- ======= Hero — Direction B, "Render Frame" ======= -->
-    <section id="hero" class="hero">
-      <div class="container">
-        <div class="hero-copy reveal">
-          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Open to AI / LLM roles</span>
-          <h1 class="hero-headline">AI/LLM engineer<br>with a <span class="accent">graphics</span> spine.</h1>
-          <p class="hero-sub">I build agents, tool-calling pipelines and Claude-powered apps — backed by 4+ years shipping real-time 3D, Unreal &amp; MetaHuman experiences.</p>
-          <div class="hero-actions">
-            <a href="#work" class="btn btn-primary">View Projects</a>
-            <a href="Sanjit_Kulkarni_Resume.pdf" class="btn btn-outline" target="_blank" rel="noopener">
-              Résumé <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
-            </a>
-            <a href="#contact" class="btn-link">Contact</a>
-          </div>
+    <!-- ======= L00 · Attention (hero) ======= -->
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="ltag">L00 · attention <span>· hover any word to make it the query</span></div>
+        <div class="heads" role="group" aria-label="Attention head">
+          <button type="button" class="head" data-h="craft" aria-pressed="true">head 11.3 · craft</button>
+          <button type="button" class="head" data-h="identity" aria-pressed="false">head 7.1 · identity</button>
+          <button type="button" class="head" data-h="prev" aria-pressed="false">head 2.4 · previous token</button>
         </div>
-
-        <figure class="render-frame reveal">
-          <img src="assets/img/self.jpg" alt="Portrait of Sanjit Kulkarni" width="800" height="1202" loading="eager" decoding="async">
-          <span class="render-frame-corner tl" aria-hidden="true"></span>
-          <span class="render-frame-corner tr" aria-hidden="true"></span>
-          <span class="render-frame-corner bl" aria-hidden="true"></span>
-          <span class="render-frame-corner br" aria-hidden="true"></span>
-          <span class="render-frame-label">subject.cam</span>
-          <span class="render-frame-rec"><span class="status-dot" aria-hidden="true"></span>REC</span>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ======= About ======= -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">About</span>
-          <h2 class="section-title">From real-time engines to real-time intelligence.</h2>
+        <div class="sent-wrap">
+          <canvas id="arcs" aria-hidden="true"></canvas>
+          <h1 class="sent" id="sent" aria-label="Sanjit Kulkarni builds AI you can talk to, face to face."><span class="tk">Sanjit</span> <span class="tk">Kulkarni</span> <span class="tk">builds</span> <span class="tk">AI</span> <span class="tk">you</span> <span class="tk">can</span> <span class="tk">talk</span> <span class="tk">to,</span> <span class="tk">face</span> <span class="tk">to</span> <span class="tk">face.</span></h1>
         </div>
-
-        <div class="about-bio reveal">
-          <p>I'm a software engineer who spent the last 4+ years building real-time 3D experiences — games, AR/VR, and interactive installations — in Unity and Unreal. Over the past year I've been pointing that same foundation at AI: building agents, tool-calling pipelines, and Claude-powered products that ship.</p>
-          <p>The throughline is the same in both worlds: tight feedback loops, performant systems, and experiences that feel responsive — whether that's a frame budget or a model's time-to-first-token.</p>
-
-          <dl class="about-facts">
-            <div class="about-fact">
-              <dt>Based in</dt>
-              <dd>Mumbai, India</dd>
-            </div>
-            <div class="about-fact">
-              <dt>Focus</dt>
-              <dd>AI / LLM Applications</dd>
-            </div>
-            <div class="about-fact">
-              <dt>Foundation</dt>
-              <dd>Real-time 3D &amp; Games</dd>
-            </div>
-            <div class="about-fact">
-              <dt>Email</dt>
-              <dd><a href="mailto:sanjit.kulkarni.2018@gmail.com">sanjit.kulkarni.2018@gmail.com</a></dd>
-            </div>
-          </dl>
-        </div>
-
-        <div class="education-card reveal">
-          <h3>Education</h3>
-          <div class="education-item">
-            <div>
-              <div class="degree">B.E., Information Technology</div>
-              <div class="school">Mumbai University</div>
-            </div>
-            <time>2015 – 2018</time>
-          </div>
-          <div class="education-item">
-            <div>
-              <div class="degree">PG, Game Development</div>
-              <div class="school">Mumbai University</div>
-            </div>
-            <time>2018 – 2021</time>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= Skills ======= -->
-    <section id="skills" class="skills">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Skills</span>
-          <h2 class="section-title">Tools I reach for.</h2>
-        </div>
-
-        <div class="skills-grid">
-          <div class="skill-group reveal">
-            <span class="eyebrow">AI / LLM</span>
-            <h3>Agents &amp; applications</h3>
-            <div class="tag-list">
-              <span class="tag-chip">Python</span>
-              <span class="tag-chip">Claude API</span>
-              <span class="tag-chip">Ollama</span>
-              <span class="tag-chip">Gradio</span>
-              <span class="tag-chip">Prompt Engineering</span>
-              <span class="tag-chip">Tool-Calling Pipelines</span>
-            </div>
-          </div>
-
-          <div class="skill-group reveal">
-            <span class="eyebrow">Real-Time 3D</span>
-            <h3>Graphics &amp; games</h3>
-            <div class="tag-list">
-              <span class="tag-chip">Unity</span>
-              <span class="tag-chip">Unreal Engine</span>
-              <span class="tag-chip">MetaHuman</span>
-              <span class="tag-chip">C#</span>
-              <span class="tag-chip">AR / VR</span>
-              <span class="tag-chip">Vuforia</span>
-            </div>
-          </div>
-
-          <div class="skill-group reveal">
-            <span class="eyebrow">Platforms</span>
-            <h3>Tools &amp; infrastructure</h3>
-            <div class="tag-list">
-              <span class="tag-chip">Azure</span>
-              <span class="tag-chip">Convai</span>
-              <span class="tag-chip">REST APIs</span>
-              <span class="tag-chip">Git &amp; GitHub</span>
-              <span class="tag-chip">Web3</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= Work / Projects ======= -->
-    <section id="work" class="work">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Work</span>
-          <h2 class="section-title">Featured projects.</h2>
-          <p class="section-sub">AI/LLM applications first, with the real-time-graphics work that got me here underneath.</p>
-        </div>
-
-        <div class="work-featured">
-          <article class="project-card reveal">
-            <span class="project-index">PROJECT_01</span>
-            <h3>AI Concierge</h3>
-            <p class="project-desc">An interactive AI concierge built for a physical Holobox installation — a MetaHuman avatar powered by Convai for real-time conversation, rendered in Unreal Engine and backed by Azure.</p>
-            <div class="tag-list">
-              <span class="tag-chip">Unreal Engine</span>
-              <span class="tag-chip">MetaHuman</span>
-              <span class="tag-chip">Convai</span>
-              <span class="tag-chip">Azure</span>
-            </div>
-            <!-- TODO: add a demo video / case study link once available -->
-            <p class="project-link-pending">Demo link coming soon</p>
-          </article>
-
-          <article class="project-card reveal">
-            <span class="project-index">PROJECT_02</span>
-            <h3>AI Lead-Generation Agent</h3>
-            <p class="project-desc">A Python agent that qualifies and engages inbound leads automatically — the Claude API for reasoning, Ollama for local inference, and a Gradio front-end for fast internal use.</p>
-            <div class="tag-list">
-              <span class="tag-chip">Python</span>
-              <span class="tag-chip">Claude API</span>
-              <span class="tag-chip">Ollama</span>
-              <span class="tag-chip">Gradio</span>
-            </div>
-            <!-- TODO: add a repo / demo link once available -->
-            <p class="project-link-pending">Demo link coming soon</p>
-          </article>
-
-          <article class="project-card reveal">
-            <span class="project-index">PROJECT_03</span>
-            <h3>Job Fit Analyzer</h3>
-            <p class="project-desc">A lightweight web tool that scores how well a résumé matches a job description, using the Claude API for analysis behind a simple HTML front-end.</p>
-            <div class="tag-list">
-              <span class="tag-chip">HTML</span>
-              <span class="tag-chip">Claude API</span>
-            </div>
-            <!-- TODO: add a repo / demo link once available -->
-            <p class="project-link-pending">Demo link coming soon</p>
-          </article>
-        </div>
-
-        <h3 class="work-secondary-head">Earlier work — real-time 3D &amp; games</h3>
-        <div class="work-secondary">
-          <div class="project-row reveal">
-            <h4>Web3 Racing Game</h4>
-            <span class="project-row-meta">Coincade Studios</span>
-            <p>2D Web3-integrated car racing game with on-chain rewards, built in Unity and shipped to Android and WebGL.</p>
-          </div>
-          <div class="project-row reveal">
-            <h4>AR Insurance Prototype</h4>
-            <span class="project-row-meta">Augurs Technologies</span>
-            <p>AR prototype using Vuforia to visualize insurance policies and simulate everyday tasks in real time.</p>
-          </div>
-          <div class="project-row reveal">
-            <h4>Educational Games</h4>
-            <span class="project-row-meta">BYJU'S Future School</span>
-            <p>In-house Unity games combining storytelling and physics-based challenges for K-12 learners.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= Experience ======= -->
-    <section id="experience" class="experience">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Experience</span>
-          <h2 class="section-title">Where I've worked.</h2>
-        </div>
-
-        <div class="timeline">
-          <div class="timeline-item reveal">
-            <div class="timeline-head">
-              <span class="timeline-role">Game &amp; Graphics Developer</span>
-              <span class="timeline-company">· Evolution Co</span>
-              <span class="timeline-date">Feb 2026 — Present</span>
-            </div>
-            <ul>
-              <li>Building real-time graphics and gameplay systems while expanding into AI-driven tooling and applications.</li>
-            </ul>
-            <!-- TODO: add specific bullet achievements for Evolution Co once available -->
-          </div>
-
-          <!-- TODO: confirm exact end date at Coincade Studios (shown here as Feb 2026, i.e. when Evolution Co began) -->
-          <div class="timeline-item reveal">
-            <div class="timeline-head">
-              <span class="timeline-role">Senior Game Developer</span>
-              <span class="timeline-company">· Coincade Studios</span>
-              <span class="timeline-date">Jan 2023 — Feb 2026</span>
-            </div>
-            <ul>
-              <li>Developed a 2D Web3-integrated car racing game using REST APIs, Web3 SDKs, and smart contracts for on-chain transactions.</li>
-              <li>Shipped to Android and WebGL, improving performance by 20% and adding secure crypto payment gateways.</li>
-              <li>Increased user engagement by 30% with real-time NFT rewards and a dynamic leaderboard.</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item reveal">
-            <div class="timeline-head">
-              <span class="timeline-role">Unity Engineer</span>
-              <span class="timeline-company">· Augurs Technologies</span>
-              <span class="timeline-date">Jul 2022 — Jan 2023</span>
-            </div>
-            <ul>
-              <li>Built an interactive AR experience with Vuforia and real-time physics, improving user engagement by 25%.</li>
-              <li>Engineered a real-time image-scanning system for AR, cutting detection lag by 40%.</li>
-              <li>Led an AR-based insurance prototype, improving user interaction by 30% through optimized recognition and animated policy visualization.</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item reveal">
-            <div class="timeline-head">
-              <span class="timeline-role">Game Developer</span>
-              <span class="timeline-company">· BYJU'S Future School</span>
-              <span class="timeline-date">Feb 2021 — Jun 2022</span>
-            </div>
-            <ul>
-              <li>Designed and built 5+ in-house Unity games combining storytelling and physics-based challenges.</li>
-              <li>Mentored 10+ student teams, improving project completion rates by 40%.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= Contact ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="contact-card reveal">
+        <div class="hero-sub">
           <div>
-            <span class="eyebrow">Contact</span>
-            <h2 class="contact-cta">Building something with AI? I'd like to hear about it.</h2>
+            <p><b>Sanjit Kulkarni, AI/LLM engineer.</b> I build voice-first kiosks and live AI avatars that people talk to in physical spaces, backed by LLM agents and 4+ years shipping real-time 3D in Unity and Unreal.</p>
+            <span class="status">Open to AI / LLM roles</span>
           </div>
-          <div class="contact-links">
-            <a class="contact-link" href="mailto:sanjit.kulkarni.2018@gmail.com">
-              <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg> Email
-            </a>
-            <a class="contact-link" href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" rel="noopener">
-              <svg class="icon icon-brand" aria-hidden="true"><use href="#icon-linkedin"></use></svg> LinkedIn
-            </a>
-            <a class="contact-link" href="https://github.com/admiralxeon" target="_blank" rel="noopener">
-              <svg class="icon icon-brand" aria-hidden="true"><use href="#icon-github"></use></svg> GitHub
-            </a>
+          <div class="cta">
+            <a class="btn hot" href="#work">▶ Watch 3 demos</a>
+            <a class="btn" href="Sanjit_Kulkarni_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+            <a class="btn" href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= L01 · Embedding (about) ======= -->
+    <section id="about">
+      <div class="wrap">
+        <div class="ltag">L01 · embedding <span>· about</span></div>
+        <h2>Every word gets a vector. Here are mine.</h2>
+        <div class="embed-grid">
+          <div>
+            <p class="about">I'm a software engineer who spent the last 4+ years building <span class="kw">real-time 3D</span> experiences: <span class="kw">games</span>, <span class="kw">AR/VR</span> and interactive installations in <span class="kw">Unity</span> and <span class="kw">Unreal</span>. Over the past year I've pointed that foundation at <span class="kw">AI</span> you can talk to, face to face: voice-first kiosks, live <span class="kw">avatars</span> on Holobox screens, and the <span class="kw">agents</span> and <span class="kw">tool-calling</span> pipelines behind them. The obsession is the same in both worlds. Whether the budget is a 16 ms frame or time-to-first-token, it should feel <span class="kw">instant</span>.</p>
+            <dl class="facts">
+              <div><dt>Based in</dt><dd>Mumbai, India</dd></div>
+              <div><dt>Focus</dt><dd>Embodied AI: avatars, kiosks, agents</dd></div>
+              <div><dt>Education</dt><dd>B.E., Information Technology<small>Mumbai University · 2015 – 2018</small></dd></div>
+              <div><dt>&nbsp;</dt><dd>PG, Game Development<small>Mumbai University · 2018 – 2021</small></dd></div>
+            </dl>
+          </div>
+          <div class="embed-side">
+            <figure class="patches" id="patches" aria-label="Portrait of Sanjit Kulkarni, split into image patches">
+              <figcaption>input image → 24 patches</figcaption>
+            </figure>
+            <div class="vec">
+              <div class="vec-head"><span>embed(<b id="vecWord">"Sanjit"</b>)</span><span>d=64</span></div>
+              <div id="cells"></div>
+              <div class="vec-foot">Hover a highlighted word or an image patch to see its vector.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= L04–L08 · Forward pass (work) ======= -->
+    <section id="work" style="padding-top:0">
+      <div class="wrap">
+        <div class="ltag">L04 – L08 · forward pass <span>· projects &amp; skills</span></div>
+        <h2>Feed in a project. Watch which skills fire.</h2>
+        <p class="lede">Three AI products with demos, then the games and AR work that got me here. <span class="net-copy">In the diagram, inputs are things I've built, the hidden layer is the stack each one used, and the outputs are the kinds of work it points to. Hover or focus a card to run it.</span></p>
+        <div class="net">
+          <div class="net-cols" aria-hidden="true"><span>input · work</span><span>hidden · skills</span><span>output · roles</span></div>
+          <canvas id="net" aria-hidden="true"></canvas>
+        </div>
+        <div class="inputs" id="inputs">
+          <article class="in-card feature" tabindex="0" data-i="0">
+            <button type="button" class="demo-thumb" data-demo="companionx" aria-label="Play the CompanionX demo video, 1 minute">
+              <img src="assets/demos/companionx-demo-poster.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="demo-play" aria-hidden="true"></span>
+              <span class="demo-len" aria-hidden="true">▶ demo · 1:00</span>
+            </button>
+            <div>
+              <span class="k">Featured AI project</span>
+              <h3>CompanionX</h3>
+              <p>A voice-first AI companion kiosk for care-home residents, with a live HeyGen avatar, medicine reminders and distress detection. It comes with a caregiver and family dashboard for vitals, care settings and role-based access.</p>
+              <div class="pills"><span>Next.js</span><span>TypeScript</span><span>Express</span><span>HeyGen</span><span>Azure Speech</span><span>Google Health</span></div>
+              <a class="case-link" href="projects/companionx.html">Read the case study →</a>
+              <!-- TODO: repo is private (404 for visitors). Once public, add after the case-study link:
+                   <a class="case-link" href="https://github.com/xeonxgod/companionx-webapp" target="_blank" rel="noopener">GitHub ↗</a> -->
+            </div>
+          </article>
+          <article class="in-card ai" tabindex="0" data-i="1">
+            <span class="k">AI project</span>
+            <h3>AI Concierge</h3>
+            <p>A hotel's AI concierge on Holobox screens, from the lobby desk to the ballroom door. Guests talk to a live guide who answers questions, opens the hotel's menus on screen and brings in specialist guides, in English and Arabic.</p>
+            <div class="pills"><span>Unreal Engine</span><span>MetaHuman</span><span>Convai</span><span>Azure</span></div>
+            <button type="button" class="demo-mini" data-demo="concierge" aria-label="Play the AI Concierge demo video, 27 seconds">
+              <img src="assets/demos/concierge-demo-poster.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span>▶ Watch demo · 0:27</span>
+            </button>
+            <!-- TODO: add a case study link once available. The repo is private client work
+                 (see PRODUCT.md: no client names in site text or source). -->
+
+          </article>
+          <article class="in-card ai" tabindex="0" data-i="2">
+            <span class="k">AI project</span>
+            <h3>Lead-Gen Agent</h3>
+            <p>A Python agent that qualifies and engages inbound leads automatically. The Claude API handles reasoning, Ollama runs local inference and Gradio is the front-end.</p>
+            <div class="pills"><span>Python</span><span>Claude API</span><span>Ollama</span><span>Gradio</span></div>
+            <button type="button" class="demo-mini" data-demo="leadgen" aria-label="Play the Lead-Gen Agent demo video, 24 seconds">
+              <img src="assets/demos/leadgen-demo-poster.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span>▶ Watch demo · 0:24</span>
+            </button>
+            <a class="case-link" href="https://github.com/admiralxeon/Lead-Gen-Agent" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </article>
+          <article class="in-card" tabindex="0" data-i="3">
+            <span class="k">Coincade Studios</span>
+            <h3>Web3 Racing Game</h3>
+            <p>A 2D Web3-integrated racing game with on-chain rewards, built in Unity and shipped to Android and WebGL.</p>
+            <div class="pills"><span>Unity</span><span>C#</span><span>Web3</span><span>REST APIs</span></div>
+          </article>
+          <article class="in-card" tabindex="0" data-i="4">
+            <span class="k">Augurs Technologies</span>
+            <h3>AR Insurance Prototype</h3>
+            <p>An AR prototype using Vuforia to visualize insurance policies and simulate everyday tasks in real time.</p>
+            <div class="pills"><span>Unity</span><span>Vuforia</span><span>AR / VR</span></div>
+          </article>
+          <article class="in-card" tabindex="0" data-i="5">
+            <span class="k">BYJU'S Future School</span>
+            <h3>Educational Games</h3>
+            <p>In-house Unity games combining storytelling and physics-based challenges for K-12 learners.</p>
+            <div class="pills"><span>Unity</span><span>C#</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= L10 · Attention matrix (experience) ======= -->
+    <section id="experience" style="padding-top:0">
+      <div class="wrap">
+        <div class="ltag">L10 · attention matrix <span>· experience</span></div>
+        <h2>Where each role put its attention.</h2>
+        <p class="lede">Rows are jobs, columns are skills. Brighter cells mean I leaned on that skill more in that role. The weights are my own estimate. Hover a cell to read the row.</p>
+        <div class="mx-wrap">
+          <div class="mx" id="mx" role="img" aria-label="Heatmap of skills used in each role. The role list below has the details."></div>
+          <div class="mx-note" id="mxNote" aria-hidden="true"><span>hover a cell to read the row</span><span>scale 0 → 1</span></div>
+        </div>
+
+        <div class="roles">
+          <div class="role">
+            <time>Feb 2026 — Present</time>
+            <div>
+              <h3>Game &amp; Graphics Developer <span>· Evolution Co</span></h3>
+              <ul><li>Building real-time graphics and gameplay systems while expanding into AI-driven tooling and applications.</li></ul>
+              <!-- TODO: add specific bullet achievements for Evolution Co once available -->
+            </div>
+          </div>
+          <!-- TODO: confirm exact end date at Coincade Studios (shown here as Feb 2026, i.e. when Evolution Co began) -->
+          <div class="role">
+            <time>Jan 2023 — Feb 2026</time>
+            <div>
+              <h3>Senior Game Developer <span>· Coincade Studios</span></h3>
+              <ul>
+                <li>Developed a 2D Web3-integrated car racing game using REST APIs, Web3 SDKs, and smart contracts for on-chain transactions.</li>
+                <li>Shipped to Android and WebGL, improving performance by 20% and adding secure crypto payment gateways.</li>
+                <li>Increased user engagement by 30% with real-time NFT rewards and a dynamic leaderboard.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="role">
+            <time>Jul 2022 — Jan 2023</time>
+            <div>
+              <h3>Unity Engineer <span>· Augurs Technologies</span></h3>
+              <ul>
+                <li>Built an interactive AR experience with Vuforia and real-time physics, improving user engagement by 25%.</li>
+                <li>Engineered a real-time image-scanning system for AR, cutting detection lag by 40%.</li>
+                <li>Led an AR-based insurance prototype, improving user interaction by 30% through optimized recognition and animated policy visualization.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="role">
+            <time>Feb 2021 — Jun 2022</time>
+            <div>
+              <h3>Game Developer <span>· BYJU'S Future School</span></h3>
+              <ul>
+                <li>Designed and built 5+ in-house Unity games combining storytelling and physics-based challenges.</li>
+                <li>Mentored 10+ student teams, improving project completion rates by 40%.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= L12 · Unembed (contact) ======= -->
+    <section id="contact" style="padding-top:0">
+      <div class="wrap">
+        <div class="ltag">L12 · unembed <span>· next token</span></div>
+        <h2>The most likely next token is you.</h2>
+        <div class="nt">
+          <div>
+            <p class="ctx"><em>You've read this far. Now you want to</em> <span class="slot" id="slot">___</span></p>
+            <div class="tctl"><label for="temp">temperature</label><input type="range" id="temp" min="0.2" max="2" step="0.05" value="1"><output id="tempOut" for="temp">1.00</output></div>
+            <div class="nt-actions">
+              <button class="btn hot" id="sample" type="button">sample next token</button>
+              <button class="btn" id="greedy" type="button">greedy decode</button>
+            </div>
+          </div>
+          <div>
+            <div class="logits" id="logits" aria-label="Next-token probabilities"></div>
+            <div class="out" id="out" aria-live="polite"><p>Press sample. The model picks a token and the page responds.</p></div>
+          </div>
+        </div>
+
+        <!-- Ask sanjit-1: local keyword router over résumé content (no API). See ASK in portfolio.js. -->
+        <div class="ask" id="ask">
+          <div class="ask-head">
+            <span class="orb" aria-hidden="true"></span>
+            <div>
+              <h3>Ask sanjit-1</h3>
+              <small>Runs in your browser. No AI calls, just keyword matching over my résumé.</small>
+            </div>
+          </div>
+          <div class="ask-thread" id="askThread" aria-live="polite">
+            <div class="msg a"><p>Hi, I'm sanjit-1. Ask me about Sanjit's projects, CompanionX, his career or stack, or how to reach him.</p></div>
+          </div>
+          <div class="ask-sugg" id="askSugg">
+            <button type="button" class="chip" data-q="Who is Sanjit?">Who is Sanjit?</button>
+            <button type="button" class="chip" data-q="What AI projects has he built?">AI projects</button>
+            <button type="button" class="chip" data-q="Tell me about CompanionX">CompanionX</button>
+            <button type="button" class="chip" data-q="Walk me through his career">Career</button>
+            <button type="button" class="chip" data-q="Is he open to roles?">Open to roles?</button>
+          </div>
+          <form class="ask-form" id="askForm">
+            <label class="sr-only" for="askInput">Ask a question about Sanjit</label>
+            <input id="askInput" type="text" autocomplete="off" placeholder="Ask about my work…">
+            <button class="btn hot" type="submit" id="askSend">Ask</button>
+          </form>
+        </div>
+
+        <div class="contact-card">
+          <span class="k">Hiring for an AI/LLM role? Email is the fastest way to reach me.</span>
+          <a class="mail" href="mailto:sanjit.kulkarni.2018@gmail.com">sanjit.kulkarni.2018<wbr>@gmail.com</a>
+          <div class="links">
+            <button class="btn hot" id="copy" type="button">Copy email</button>
+            <a class="btn" href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn" href="https://github.com/admiralxeon" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="btn" href="Sanjit_Kulkarni_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
           </div>
         </div>
       </div>
@@ -386,17 +351,30 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year">2026</span> Sanjit Kulkarni. Built with HTML, CSS &amp; vanilla JS.</p>
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Sanjit Kulkarni. Hand-built with HTML, CSS, Canvas &amp; vanilla JS.</p>
       <div class="footer-links">
         <a href="mailto:sanjit.kulkarni.2018@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/admiralxeon" target="_blank" rel="noopener">GitHub</a>
-        <a href="Sanjit Kulkarni Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+        <a href="Sanjit_Kulkarni_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
       </div>
     </div>
   </footer>
 
-  <script src="assets/js/portfolio.js"></script>
+  <!-- Demo overlay: any [data-demo="key"] button opens it; the video, title and link come
+       from DEMOS in portfolio.js. Videos only download when someone presses play. -->
+  <dialog class="demo-dialog" id="demoDialog" aria-labelledby="demoTitle">
+    <video id="demoVideo" controls playsinline preload="none"></video>
+    <div class="demo-bar">
+      <span id="demoTitle">Demo</span>
+      <span class="demo-bar-actions">
+        <a id="demoLink" href="#work">More →</a>
+        <button type="button" class="btn" id="demoClose">Close</button>
+      </span>
+    </div>
+  </dialog>
+
+  <script src="assets/js/portfolio.js?v=2026-10-29g"></script>
 </body>
 </html>

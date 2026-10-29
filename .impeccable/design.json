@@ -1,0 +1,845 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T05:58:23.925Z",
+  "title": "Design System: Sanjit Kulkarni Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "viridis-night-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink (viridis)",
+        "canonical": "#0a0f1a",
+        "oklch": "oklch(16.9% 0.025 265.2)",
+        "tonalRamp": [
+          "#060b16",
+          "#1f2531",
+          "#3c424f",
+          "#5a6170",
+          "#7b8292",
+          "#9ea5b5",
+          "#c1c9da",
+          "#e6efff"
+        ]
+      },
+      "viridis-slate-panel": {
+        "role": "neutral",
+        "displayName": "Slate Panel (viridis)",
+        "canonical": "#111827",
+        "oklch": "oklch(21.0% 0.032 264.7)",
+        "tonalRamp": [
+          "#050b18",
+          "#1d2535",
+          "#3a4253",
+          "#586174",
+          "#798296",
+          "#9ba5ba",
+          "#bfc9df",
+          "#e4efff"
+        ]
+      },
+      "viridis-raised-slate": {
+        "role": "neutral",
+        "displayName": "Raised Slate (viridis)",
+        "canonical": "#172034",
+        "oklch": "oklch(24.6% 0.041 265.1)",
+        "tonalRamp": [
+          "#040a1c",
+          "#1b2539",
+          "#374258",
+          "#566179",
+          "#77829b",
+          "#99a5bf",
+          "#bcc9e4",
+          "#e1efff"
+        ]
+      },
+      "viridis-hairline": {
+        "role": "neutral",
+        "displayName": "Hairline (viridis)",
+        "canonical": "#233049",
+        "oklch": "oklch(31.0% 0.049 262.8)",
+        "tonalRamp": [
+          "#020a1f",
+          "#18253d",
+          "#34425c",
+          "#53617d",
+          "#7383a0",
+          "#95a6c4",
+          "#b9caea",
+          "#ddefff"
+        ]
+      },
+      "viridis-moon-white": {
+        "role": "neutral",
+        "displayName": "Moon White (viridis)",
+        "canonical": "#eef2f8",
+        "oklch": "oklch(96.0% 0.009 258.3)",
+        "tonalRamp": [
+          "#090b0f",
+          "#22252a",
+          "#3f4247",
+          "#5e6166",
+          "#7f8388",
+          "#a2a5ab",
+          "#c5c9cf",
+          "#ebeff5"
+        ]
+      },
+      "viridis-fog": {
+        "role": "neutral",
+        "displayName": "Fog (viridis)",
+        "canonical": "#94a3b8",
+        "oklch": "oklch(71.1% 0.035 256.8)",
+        "tonalRamp": [
+          "#030b1a",
+          "#1a2636",
+          "#364355",
+          "#556275",
+          "#758498",
+          "#97a6bb",
+          "#bbcbe0",
+          "#e0f0ff"
+        ]
+      },
+      "viridis-dusk": {
+        "role": "neutral",
+        "displayName": "Dusk (viridis)",
+        "canonical": "#8494ac",
+        "oklch": "oklch(66.2% 0.040 258.4)",
+        "tonalRamp": [
+          "#020b1c",
+          "#192539",
+          "#354358",
+          "#536278",
+          "#74839b",
+          "#96a6bf",
+          "#b9cae4",
+          "#def0ff"
+        ]
+      },
+      "viridis-deep-harbor-blue": {
+        "role": "primary",
+        "displayName": "Deep Harbor Blue (viridis)",
+        "canonical": "#31688e",
+        "oklch": "oklch(49.7% 0.084 241.4)",
+        "tonalRamp": [
+          "#000c22",
+          "#002846",
+          "#08466a",
+          "#30678d",
+          "#5289b0",
+          "#74acd5",
+          "#98d1fb",
+          "#c2f6ff"
+        ]
+      },
+      "viridis-lagoon-teal": {
+        "role": "primary",
+        "displayName": "Lagoon Teal (viridis)",
+        "canonical": "#21918c",
+        "oklch": "oklch(59.6% 0.095 190.3)",
+        "tonalRamp": [
+          "#001211",
+          "#00302e",
+          "#00514d",
+          "#00726d",
+          "#26948f",
+          "#52b8b2",
+          "#79ddd7",
+          "#affffb"
+        ]
+      },
+      "viridis-chlorophyll-green": {
+        "role": "primary",
+        "displayName": "Chlorophyll Green (viridis)",
+        "canonical": "#5ec962",
+        "oklch": "oklch(74.9% 0.173 144.3)",
+        "tonalRamp": [
+          "#001200",
+          "#003100",
+          "#005400",
+          "#007803",
+          "#2b9b35",
+          "#55c059",
+          "#8be28b",
+          "#c0ffbf"
+        ]
+      },
+      "viridis-pollen-yellow": {
+        "role": "primary",
+        "displayName": "Pollen Yellow (viridis)",
+        "canonical": "#fde725",
+        "oklch": "oklch(91.8% 0.186 102.1)",
+        "tonalRamp": [
+          "#130900",
+          "#322400",
+          "#544100",
+          "#786000",
+          "#9a8300",
+          "#bda700",
+          "#ddcc42",
+          "#fef292"
+        ]
+      },
+      "viridis-on-hot": {
+        "role": "neutral",
+        "displayName": "On Hot (viridis)",
+        "canonical": "#08131a",
+        "oklch": "oklch(18.0% 0.022 237.3)",
+        "tonalRamp": [
+          "#030c13",
+          "#1b272e",
+          "#37444c",
+          "#56636c",
+          "#77858e",
+          "#99a7b1",
+          "#bdccd6",
+          "#e2f1fc"
+        ]
+      },
+      "cobalt-cool-paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper (cobalt)",
+        "canonical": "#f3f4f7",
+        "oklch": "oklch(96.7% 0.004 271.4)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#242527",
+          "#414244",
+          "#606164",
+          "#818285",
+          "#a4a5a8",
+          "#c8c9cc",
+          "#edeef1"
+        ]
+      },
+      "cobalt-sheet-white": {
+        "role": "neutral",
+        "displayName": "Sheet White (cobalt)",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "cobalt-mist": {
+        "role": "neutral",
+        "displayName": "Mist (cobalt)",
+        "canonical": "#eaecf2",
+        "oklch": "oklch(94.3% 0.008 271.3)",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#232529",
+          "#404247",
+          "#5f6166",
+          "#808287",
+          "#a3a5aa",
+          "#c7c9cf",
+          "#eceef4"
+        ]
+      },
+      "cobalt-hairline": {
+        "role": "neutral",
+        "displayName": "Hairline (cobalt)",
+        "canonical": "#d6dae3",
+        "oklch": "oklch(88.8% 0.013 266.7)",
+        "tonalRamp": [
+          "#090b11",
+          "#22252c",
+          "#3f4249",
+          "#5e6169",
+          "#7f828a",
+          "#a1a5ae",
+          "#c5c9d2",
+          "#eaeef8"
+        ]
+      },
+      "cobalt-ink": {
+        "role": "primary",
+        "displayName": "Ink (cobalt)",
+        "canonical": "#10131b",
+        "oklch": "oklch(18.7% 0.017 268.7)",
+        "tonalRamp": [
+          "#080b12",
+          "#22252e",
+          "#3e424b",
+          "#5d616b",
+          "#7e828d",
+          "#a0a5b0",
+          "#c4c9d5",
+          "#eaeefa"
+        ]
+      },
+      "cobalt-graphite": {
+        "role": "neutral",
+        "displayName": "Graphite (cobalt)",
+        "canonical": "#525a6b",
+        "oklch": "oklch(46.7% 0.029 265.3)",
+        "tonalRamp": [
+          "#060b18",
+          "#1e2534",
+          "#3a4252",
+          "#596172",
+          "#7a8295",
+          "#9ca5b8",
+          "#c0c9dd",
+          "#e5efff"
+        ]
+      },
+      "cobalt-pencil": {
+        "role": "neutral",
+        "displayName": "Pencil (cobalt)",
+        "canonical": "#646b7d",
+        "oklch": "oklch(52.8% 0.030 268.6)",
+        "tonalRamp": [
+          "#060a18",
+          "#1f2534",
+          "#3b4252",
+          "#5a6173",
+          "#7b8295",
+          "#9da5b8",
+          "#c1c9dd",
+          "#e6eeff"
+        ]
+      },
+      "cobalt-paper-lavender": {
+        "role": "primary",
+        "displayName": "Paper Lavender (cobalt)",
+        "canonical": "#b4bffc",
+        "oklch": "oklch(81.8% 0.087 276.4)",
+        "tonalRamp": [
+          "#060624",
+          "#1c1f4a",
+          "#363c6f",
+          "#545c92",
+          "#747eb6",
+          "#96a1dc",
+          "#bac5ff",
+          "#e0ebff"
+        ]
+      },
+      "cobalt-periwinkle": {
+        "role": "primary",
+        "displayName": "Periwinkle (cobalt)",
+        "canonical": "#6577ff",
+        "oklch": "oklch(62.7% 0.201 273.5)",
+        "tonalRamp": [
+          "#050130",
+          "#161662",
+          "#2b2f98",
+          "#434cd0",
+          "#6071f8",
+          "#7f96ff",
+          "#a8c0ff",
+          "#d4e9ff"
+        ]
+      },
+      "cobalt-cobalt-ink": {
+        "role": "primary",
+        "displayName": "Cobalt Ink (cobalt)",
+        "canonical": "#2340ff",
+        "oklch": "oklch(50.7% 0.276 266.6)",
+        "tonalRamp": [
+          "#020038",
+          "#070c71",
+          "#1325b1",
+          "#213ef5",
+          "#3967ff",
+          "#5b92ff",
+          "#8bc0ff",
+          "#bfebff"
+        ]
+      },
+      "cobalt-signal-vermilion": {
+        "role": "primary",
+        "displayName": "Signal Vermilion (cobalt)",
+        "canonical": "#ff4d2e",
+        "oklch": "oklch(67.0% 0.219 32.3)",
+        "tonalRamp": [
+          "#270000",
+          "#550000",
+          "#880000",
+          "#be0000",
+          "#e83412",
+          "#ff6243",
+          "#ff9a7f",
+          "#ffcdb6"
+        ]
+      },
+      "cobalt-on-hot": {
+        "role": "neutral",
+        "displayName": "On Hot (cobalt)",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ember-coal": {
+        "role": "neutral",
+        "displayName": "Coal (ember)",
+        "canonical": "#0c0e12",
+        "oklch": "oklch(16.3% 0.009 264.3)",
+        "tonalRamp": [
+          "#090b0f",
+          "#23252a",
+          "#404247",
+          "#5f6167",
+          "#808288",
+          "#a2a5ab",
+          "#c6c9cf",
+          "#ebeef5"
+        ]
+      },
+      "ember-forge-panel": {
+        "role": "neutral",
+        "displayName": "Forge Panel (ember)",
+        "canonical": "#14171d",
+        "oklch": "oklch(20.4% 0.013 264.2)",
+        "tonalRamp": [
+          "#080b11",
+          "#22252b",
+          "#3e4249",
+          "#5d6169",
+          "#7e828a",
+          "#a1a5ad",
+          "#c5c9d2",
+          "#eaeff7"
+        ]
+      },
+      "ember-raised-forge": {
+        "role": "neutral",
+        "displayName": "Raised Forge (ember)",
+        "canonical": "#1b1f27",
+        "oklch": "oklch(23.9% 0.017 264.2)",
+        "tonalRamp": [
+          "#080b12",
+          "#21252d",
+          "#3e424b",
+          "#5c616b",
+          "#7d828d",
+          "#a0a5b0",
+          "#c4c9d4",
+          "#e9effa"
+        ]
+      },
+      "ember-hairline": {
+        "role": "neutral",
+        "displayName": "Hairline (ember)",
+        "canonical": "#272c36",
+        "oklch": "oklch(29.3% 0.020 264.2)",
+        "tonalRamp": [
+          "#070b14",
+          "#20252f",
+          "#3d424d",
+          "#5c616d",
+          "#7c828f",
+          "#9fa5b2",
+          "#c3c9d6",
+          "#e8effc"
+        ]
+      },
+      "ember-bone": {
+        "role": "neutral",
+        "displayName": "Bone (ember)",
+        "canonical": "#f2efe8",
+        "oklch": "oklch(95.3% 0.010 87.5)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#272520",
+          "#44423c",
+          "#64615b",
+          "#85827c",
+          "#a8a59e",
+          "#ccc9c2",
+          "#f1eee7"
+        ]
+      },
+      "ember-ash": {
+        "role": "neutral",
+        "displayName": "Ash (ember)",
+        "canonical": "#9ea3ad",
+        "oklch": "oklch(71.5% 0.016 264.5)",
+        "tonalRamp": [
+          "#080b12",
+          "#21252d",
+          "#3e424b",
+          "#5d616a",
+          "#7e828c",
+          "#a0a5af",
+          "#c4c9d4",
+          "#e9eff9"
+        ]
+      },
+      "ember-smoke": {
+        "role": "neutral",
+        "displayName": "Smoke (ember)",
+        "canonical": "#8b909d",
+        "oklch": "oklch(65.3% 0.020 269.0)",
+        "tonalRamp": [
+          "#080b14",
+          "#21252f",
+          "#3d424d",
+          "#5c616d",
+          "#7d828f",
+          "#a0a5b2",
+          "#c4c9d7",
+          "#e9eefd"
+        ]
+      },
+      "ember-night-steel": {
+        "role": "primary",
+        "displayName": "Night Steel (ember)",
+        "canonical": "#1f4e79",
+        "oklch": "oklch(41.4% 0.088 249.1)",
+        "tonalRamp": [
+          "#000b24",
+          "#002649",
+          "#14446e",
+          "#366591",
+          "#5786b5",
+          "#79aada",
+          "#9cceff",
+          "#c7f4ff"
+        ]
+      },
+      "ember-glacier-blue": {
+        "role": "primary",
+        "displayName": "Glacier Blue (ember)",
+        "canonical": "#3a8fc7",
+        "oklch": "oklch(62.4% 0.117 241.2)",
+        "tonalRamp": [
+          "#000c25",
+          "#00284d",
+          "#004678",
+          "#00679d",
+          "#348ac2",
+          "#5baee8",
+          "#84d2ff",
+          "#b9f7ff"
+        ]
+      },
+      "ember-ember-orange": {
+        "role": "primary",
+        "displayName": "Ember Orange (ember)",
+        "canonical": "#f08a3c",
+        "oklch": "oklch(73.0% 0.153 54.5)",
+        "tonalRamp": [
+          "#210000",
+          "#490c00",
+          "#752300",
+          "#a04100",
+          "#c66400",
+          "#ed8739",
+          "#ffb172",
+          "#ffdcac"
+        ]
+      },
+      "ember-lamp-gold": {
+        "role": "primary",
+        "displayName": "Lamp Gold (ember)",
+        "canonical": "#ffd27a",
+        "oklch": "oklch(88.5% 0.118 82.9)",
+        "tonalRamp": [
+          "#190600",
+          "#3a1e00",
+          "#5f3900",
+          "#815900",
+          "#a47b17",
+          "#c99e44",
+          "#edc370",
+          "#ffeaa9"
+        ]
+      },
+      "ember-on-hot": {
+        "role": "neutral",
+        "displayName": "On Hot (ember)",
+        "canonical": "#170d04",
+        "oklch": "oklch(17.0% 0.026 66.2)",
+        "tonalRamp": [
+          "#120902",
+          "#2e2318",
+          "#4c3f34",
+          "#6c5f52",
+          "#8d8072",
+          "#b1a294",
+          "#d5c6b8",
+          "#fbecdd"
+        ]
+      },
+      "frame-black": {
+        "role": "neutral",
+        "displayName": "Frame Black (frame)",
+        "canonical": "#000000",
+        "oklch": "oklch(0.0% 0.000 0.0)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The attention headline only; split into word tokens."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "One per layer section."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and project names."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "About paragraph and case-study intros."
+      },
+      "body-lg": {
+        "displayName": "Body large",
+        "purpose": "Hero supporting line."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text; floor for form inputs."
+      },
+      "body-sm": {
+        "displayName": "Body small",
+        "purpose": "Card text, chat bubbles, role bullets."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Dates, row names, footnotes."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Layer tags, weights, tool calls, chips, nav and buttons: model-output voice."
+      }
+    },
+    "shadows": [
+      {
+        "name": "layer-node-halo",
+        "value": "0 0 0 6px color-mix(in srgb, var(--r2) 18%, transparent)",
+        "purpose": "The only glow in the system: the ring around a layer node on the residual stream."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(.2, .8, .2, 1)",
+        "purpose": "Every state transition."
+      },
+      {
+        "name": "duration-quick",
+        "value": "200ms",
+        "purpose": "Color and border changes, hover lifts."
+      },
+      {
+        "name": "duration-settle",
+        "value": "350ms",
+        "purpose": "Token tint changes, card emphasis."
+      },
+      {
+        "name": "duration-reveal",
+        "value": "600ms",
+        "purpose": "Arc draw-in, thumbnail zoom."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "420px"
+      },
+      {
+        "name": "sm",
+        "value": "560px"
+      },
+      {
+        "name": "diagram",
+        "value": "600px"
+      },
+      {
+        "name": "rail",
+        "value": "760px"
+      },
+      {
+        "name": "md",
+        "value": "900px"
+      },
+      {
+        "name": "nav",
+        "value": "980px"
+      },
+      {
+        "name": "lg",
+        "value": "1100px"
+      },
+      {
+        "name": "xl",
+        "value": "1200px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default pill control: panel ground, hairline border, mono label.",
+      "html": "<button class=\"ds-btn\">Résumé ↗</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:8px;font:500 13px var(--f-mono, \"Atkinson Hyperlegible Mono\", ui-monospace, monospace);color:var(--fg,#eef2f8);background:var(--panel,#111827);border:1px solid var(--line,#233049);border-radius:999px;padding:11px 16px;cursor:pointer;transition:border-color .2s,transform .2s}.ds-btn:hover{border-color:var(--r2,#5ec962);transform:translateY(-2px)}.ds-btn:focus-visible{outline:2px solid var(--r3,#fde725);outline-offset:3px}"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one main action per region: ramp gradient from the second-highest stop to the peak, on-hot text.",
+      "html": "<button class=\"ds-btn-hot\">▶ Watch 3 demos</button>",
+      "css": ".ds-btn-hot{display:inline-flex;align-items:center;gap:8px;font:500 13px var(--f-mono, \"Atkinson Hyperlegible Mono\", ui-monospace, monospace);color:var(--on-hot,#08131a);background:linear-gradient(90deg,var(--r2,#5ec962),var(--r3,#fde725));border:0;border-radius:999px;padding:11px 16px;cursor:pointer;transition:transform .2s}.ds-btn-hot:hover{transform:translateY(-2px)}.ds-btn-hot:focus-visible{outline:2px solid var(--r3,#fde725);outline-offset:3px}"
+    },
+    {
+      "name": "Head Toggle",
+      "kind": "chip",
+      "refersTo": "head-toggle",
+      "description": "Pill toggles in a group; pressed state takes the hot gradient.",
+      "html": "<div class=\"ds-heads\"><button class=\"ds-head\" aria-pressed=\"true\">head 11.3 · craft</button><button class=\"ds-head\" aria-pressed=\"false\">head 7.1 · identity</button></div>",
+      "css": ".ds-heads{display:flex;gap:8px;flex-wrap:wrap}.ds-head{font:500 12px var(--f-mono, \"Atkinson Hyperlegible Mono\", ui-monospace, monospace);color:var(--muted,#94a3b8);background:var(--panel,#111827);border:1px solid var(--line,#233049);border-radius:999px;padding:8px 13px;cursor:pointer;transition:color .2s,background .2s}.ds-head:hover{color:var(--fg,#eef2f8)}.ds-head[aria-pressed=\"true\"]{color:var(--on-hot,#08131a);background:linear-gradient(90deg,var(--r2,#5ec962),var(--r3,#fde725));border-color:transparent}.ds-head:focus-visible{outline:2px solid var(--r3,#fde725);outline-offset:3px}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Static tech label on a raised ground.",
+      "html": "<div class=\"ds-tags\"><span class=\"ds-tag\">Unreal Engine</span><span class=\"ds-tag\">MetaHuman</span><span class=\"ds-tag\">Convai</span></div>",
+      "css": ".ds-tags{display:flex;gap:6px;flex-wrap:wrap}.ds-tag{font:12px var(--f-mono, \"Atkinson Hyperlegible Mono\", ui-monospace, monospace);color:var(--fg,#eef2f8);background:var(--panel-2,#172034);border:1px solid var(--line,#233049);border-radius:7px;padding:3px 8px}"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Panel card with hairline border that lights to the ramp on hover or focus.",
+      "html": "<article class=\"ds-card\" tabindex=\"0\"><span class=\"ds-card-k\">AI project</span><h3 class=\"ds-card-h\">AI Concierge</h3><p class=\"ds-card-p\">A hotel's AI concierge on Holobox screens, from the lobby desk to the ballroom door.</p></article>",
+      "css": ".ds-card{background:var(--panel,#111827);border:1px solid var(--line,#233049);border-radius:14px;padding:18px;max-width:420px;transition:border-color .25s,background-color .25s}.ds-card:hover,.ds-card:focus-visible{border-color:var(--r2,#5ec962);outline:none}.ds-card-k{font:12px var(--f-mono, \"Atkinson Hyperlegible Mono\", ui-monospace, monospace);color:var(--faint,#8494ac);text-transform:uppercase;letter-spacing:.06em}.ds-card-h{font:700 20px/1.2 var(--f-display, \"Bricolage Grotesque\", sans-serif);color:var(--fg,#eef2f8);margin:6px 0}.ds-card-p{font:15px/1.6 var(--f-body, \"Atkinson Hyperlegible Next\", system-ui, sans-serif);color:var(--muted,#94a3b8);margin:0}"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Ground-filled field at 16px; focus shifts the border to the ramp.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Ask about my work…\" aria-label=\"Ask a question\">",
+      "css": ".ds-input{width:280px;background:var(--bg,#0a0f1a);color:var(--fg,#eef2f8);border:1px solid var(--line,#233049);border-radius:12px;padding:12px 14px;font:16px var(--f-body, \"Atkinson Hyperlegible Next\", system-ui, sans-serif)}.ds-input::placeholder{color:var(--faint,#8494ac)}.ds-input:focus{outline:none;border-color:var(--r2,#5ec962)}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Mono links in secondary text; the active section's link turns primary.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"on\">About</a><a href=\"#\">Work</a><a href=\"#\">Experience</a><a href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;gap:20px;font:500 12px var(--f-mono, \"Atkinson Hyperlegible Mono\", ui-monospace, monospace)}.ds-nav a{color:var(--muted,#94a3b8);text-decoration:none;transition:color .2s}.ds-nav a:hover,.ds-nav a.on{color:var(--fg,#eef2f8)}.ds-nav a:focus-visible{outline:2px solid var(--r3,#fde725);outline-offset:3px}"
+    },
+    {
+      "name": "Layer Tag",
+      "kind": "custom",
+      "refersTo": "layer-tag",
+      "description": "Signature: mono uppercase section label whose node sits on the residual stream.",
+      "html": "<div class=\"ds-ltag-wrap\"><span class=\"ds-ltag-node\"></span><div class=\"ds-ltag\">L04 – L08 · forward pass <span>· projects &amp; skills</span></div></div>",
+      "css": ".ds-ltag-wrap{position:relative;padding-left:36px}.ds-ltag-wrap::before{content:\"\";position:absolute;left:11px;top:-14px;bottom:-14px;width:2px;background:linear-gradient(var(--r0,#31688e),var(--r3,#fde725))}.ds-ltag-node{position:absolute;left:6px;top:1px;width:12px;height:12px;border-radius:50%;background:var(--bg,#0a0f1a);border:2px solid var(--r2,#5ec962);box-shadow:0 0 0 6px color-mix(in srgb,var(--r2,#5ec962) 18%,transparent)}.ds-ltag{font:500 12px/1.3 var(--f-mono, \"Atkinson Hyperlegible Mono\", ui-monospace, monospace);color:var(--r2,#5ec962);letter-spacing:.06em;text-transform:uppercase}.ds-ltag span{color:var(--faint,#8494ac);text-transform:none;letter-spacing:0}"
+    },
+    {
+      "name": "Compact Demo Button",
+      "kind": "custom",
+      "refersTo": "demo-mini",
+      "description": "Poster thumbnail plus duration, keeping regular cards level.",
+      "html": "<button class=\"ds-demo\"><span class=\"ds-demo-thumb\"></span><span>▶ Watch demo · 0:27</span></button>",
+      "css": ".ds-demo{display:flex;align-items:center;gap:12px;width:320px;padding:6px 12px 6px 6px;border:1px solid var(--line,#233049);border-radius:10px;background:var(--panel-2,#172034);color:var(--fg,#eef2f8);font:500 13px var(--f-mono, \"Atkinson Hyperlegible Mono\", ui-monospace, monospace);cursor:pointer;transition:border-color .2s}.ds-demo:hover,.ds-demo:focus-visible{border-color:var(--r2,#5ec962);outline:none}.ds-demo-thumb{flex:none;width:96px;aspect-ratio:16/9;border-radius:6px;background:linear-gradient(135deg,var(--r0,#31688e),var(--r1,#21918c))}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Readable Model",
+    "overview": "The site is a transformer whose internals you are allowed to read. Every section is a layer hung off a glowing residual stream running down the left edge, labelled the way a model labels its layers (`L00 · attention`, `L01 · embedding`, `L04 – L08 · forward pass`, `L10 · attention matrix`, `L12 · unembed`). Every color is a weight drawn from a scientific colormap. Every interaction exposes how something thinks: hover a word and it becomes the query, hover a project and pulses fire through the skills it used. Nothing is decoration for its own sake; the metaphor *is* the information architecture.\n\nThe mood is **precise, playful, humane**. Precision comes from instrument-grade details: tabular weights, mono labels that read like logits, one easing curve, one hairline weight. Playfulness comes from letting visitors poke the machine (temperature sliders, attention heads, a next-token roulette) without ever hiding the plain information behind the toy. Humanity comes from legibility first: Atkinson Hyperlegible for every running word, AA contrast in every colormap, motion that pauses on request.\n\nDensity is moderate: large Bricolage headings and generous section rhythm, with compact mono annotations clustered around the data they describe. The world is dark by default and light when the visitor's system asks for it, never by fashion.",
+    "keyCharacteristics": [
+      "A layered, left-rail architecture: content hangs off a residual stream; each section opens with a layer tag sitting on that stream.",
+      "Color as data: three swappable scientific colormaps, every hue sourced from a four-stop ramp.",
+      "Flat, tonal depth: panels and hairlines, no drop shadows.",
+      "Two voices of type: an expressive grotesque for headings, a hyperlegible humanist for everything you read.",
+      "Interactive internals with a plain fallback: every playful piece has a static, keyboard-reachable equivalent."
+    ],
+    "rules": [
+      {
+        "name": "The Colormap Rule",
+        "body": "Every color on the page, canvas drawings included, comes from the active colormap's tokens. A hard-coded hex in a component is a bug; swapping the colormap must restyle everything.",
+        "section": "colors"
+      },
+      {
+        "name": "The Weight Means Something Rule",
+        "body": "Brighter means more weight. Use the high end of the ramp only for what genuinely carries the most attention right now: the query word, the active head, the primary action.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fixed Frame Rule",
+        "body": "Media and its overlays are the one exception to the Colormap Rule: video and poster frames sit on Frame Black, and play buttons and duration badges use fixed white on translucent black, because they belong to the media, not the theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Bricolage speaks, Atkinson explains. Never set running text in Bricolage, and never set a headline in Atkinson.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Is Data Rule",
+        "body": "The mono label face is for things a model or a system would emit: weights, layer names, tool calls, durations, tags, and short control labels. Never set a sentence of prose in mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The 12px Floor Rule",
+        "body": "No text renders below 12px. Labels sit at exactly 12px; anything smaller is a defect.",
+        "section": "typography"
+      },
+      {
+        "name": "The Stream Rule",
+        "body": "Every top-level section starts with a layer tag whose node sits on the residual stream. A section without a tag is not part of the model.",
+        "section": "layout"
+      },
+      {
+        "name": "The No-Shadow Rule",
+        "body": "Nothing casts a shadow. If an element needs to stand forward, give it a raised tone or a ramp-colored border, never a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** source every color, canvas included, from the active colormap tokens, and check new work in all three colormaps (viridis, cobalt, ember).",
+      "**Do** open every new top-level section with a layer tag on the residual stream.",
+      "**Do** keep faint text at or above 4.5:1 on every surface it sits on, in every colormap.",
+      "**Do** give every interactive visualisation a plain, keyboard-reachable equivalent in the page text.",
+      "**Do** use the single easing curve `cubic-bezier(.2, .8, .2, 1)` for state transitions, and honour both reduced-motion and the pause-motion toggle.",
+      "**Do** keep body text in Atkinson at 15px or more, and form inputs at 16px."
+    ],
+    "donts": [
+      "**Don't** add drop shadows. Use tone and hairlines.",
+      "**Don't** hard-code a hex color in a component (the Fixed Frame exception for media overlays aside).",
+      "**Don't** set prose in the mono face or headlines in the body face.",
+      "**Don't** render any text below 12px.",
+      "**Don't** use gradient-filled text; emphasis comes from weight, size or a ramp-colored fill behind the word.",
+      "**Don't** let a pausable animation strand content invisible. Paused animations finish at their end state."
+    ]
+  }
+}

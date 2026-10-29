@@ -1,0 +1,5 @@
+
+# Full-resolution demo masters (85 MB+). The site uses the compressed web copies in assets/demos.
+assets/demos/*_16x9.mp4
+assets/demos/brag.mp4
+assets/demos/concierge.mp4

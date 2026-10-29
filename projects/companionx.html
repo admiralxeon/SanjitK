@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5BB8W2X');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0f1a">
+
+  <title>CompanionX — Case Study · Sanjit Kulkarni</title>
+  <meta name="description" content="CompanionX: a voice-first AI companion kiosk for care-home residents, with a live HeyGen avatar, medicine reminders, distress detection and a caregiver and family dashboard.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="CompanionX — Case Study">
+  <meta property="og:description" content="A voice-first AI companion kiosk for care-home residents, and the decisions behind it.">
+  <meta property="og:url" content="https://admiralxeon.github.io/SanjitK/projects/companionx.html">
+  <meta property="og:image" content="https://admiralxeon.github.io/SanjitK/assets/img/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://admiralxeon.github.io/SanjitK/projects/companionx.html">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <!-- Same colormap bootstrap as the homepage -->
+  <script>
+    (function () {
+      var c = null;
+      try { c = localStorage.getItem("cmap"); } catch (e) {}
+      if (!/^(viridis|cobalt|ember)$/.test(c || "")) {
+        c = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "cobalt" : "viridis";
+      }
+      document.documentElement.setAttribute("data-cmap", c);
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Atkinson+Hyperlegible+Next:wght@400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link href="../assets/css/portfolio.css?v=2026-10-29g" rel="stylesheet">
+</head>
+
+<body class="case">
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BB8W2X"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="logo" href="../index.html">sanjit-1 <b>/ companionx</b></a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="../index.html#work">All work</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#decisions">Decisions</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cmap" role="group" aria-label="Colormap">
+        <span class="cmap-label">cmap</span>
+        <button type="button" data-cmap="viridis" aria-pressed="false"><i></i><span>viridis</span></button>
+        <button type="button" data-cmap="cobalt" aria-pressed="false"><i></i><span>cobalt</span></button>
+        <button type="button" data-cmap="ember" aria-pressed="false"><i></i><span>ember</span></button>
+      </div>
+      <button type="button" class="motion" id="motion"><i aria-hidden="true"></i><span>pause motion</span></button>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ======= Intro ======= -->
+    <section class="case-hero">
+      <div class="wrap">
+        <a class="crumb" href="../index.html#work">← All work</a>
+        <div class="ltag">Case study <span>· AI project</span></div>
+        <h1 class="case-title">Companion<span>X</span></h1>
+        <p class="case-lede"><b>A voice-first AI companion kiosk for care-home residents.</b> It has a live HeyGen avatar, medicine reminders and distress detection, plus a caregiver and family dashboard for vitals, care settings and role-based access.</p>
+        <div class="pills"><span>Next.js</span><span>TypeScript</span><span>Express</span><span>HeyGen</span><span>Azure Speech</span><span>Google Health</span><span>WebRTC</span></div>
+        <dl class="case-meta">
+          <div><dt>For</dt><dd>Care-home residents</dd></div>
+          <div><dt>Also for</dt><dd>Caretakers and family</dd></div>
+          <div><dt>Interface</dt><dd>Voice first, live avatar</dd></div>
+          <div><dt>Runs on</dt><dd>Shared 8 GB server, Node 20</dd></div>
+        </dl>
+        <!-- TODO: repo is private (404 for visitors). Once public, add below the meta list:
+             <a class="btn" style="margin-top:22px" href="https://github.com/xeonxgod/companionx-webapp" target="_blank" rel="noopener">View on GitHub ↗</a> -->
+        <figure class="case-video" id="demo">
+          <video controls playsinline preload="metadata" poster="../assets/demos/companionx-demo-poster.jpg" aria-label="CompanionX demo video">
+            <source src="../assets/demos/companionx-demo.mp4" type="video/mp4">
+            <a href="../assets/demos/companionx-demo.mp4">Download the CompanionX demo (MP4, 5 MB)</a>
+          </video>
+          <figcaption>1-minute demo · the kiosk, the live avatar on the Holobox, the caregiver dashboard and the SOS flow</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======= Problem ======= -->
+    <section id="problem">
+      <div class="wrap">
+        <div class="ltag">L01 · problem</div>
+        <p class="problem-statement">Older residents in care homes are <em>lonely</em>, miss medicines and can find touchscreens hard.</p>
+        <div class="who">
+          <div class="who-card">
+            <span class="k">Residents</span>
+            <ul>
+              <li>Loneliness</li>
+              <li>Missed medicines</li>
+              <li>Touchscreens that are hard to use</li>
+            </ul>
+          </div>
+          <div class="who-card">
+            <span class="k">Caretakers &amp; family</span>
+            <ul>
+              <li>Can't see how a resident is doing day to day</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Architecture ======= -->
+    <section id="architecture" style="padding-top:0">
+      <div class="wrap">
+        <div class="ltag">L02 · architecture</div>
+        <h2>The app hears every sentence first.</h2>
+        <p class="lede">Pick a scenario to trace how a sentence moves through the system.</p>
+
+        <div class="scenarios" role="group" aria-label="Scenario">
+          <button type="button" class="head" data-s="distress" aria-pressed="true">distress phrase</button>
+          <button type="button" class="head" data-s="chat" aria-pressed="false">small talk</button>
+          <button type="button" class="head" data-s="asleep" aria-pressed="false">avatar asleep</button>
+          <button type="button" class="head" data-s="email" aria-pressed="false">“email my son”</button>
+          <button type="button" class="head" data-s="reminder" aria-pressed="false">medicine reminder</button>
+        </div>
+
+        <div class="arch">
+          <svg viewBox="0 0 1120 600" role="img" aria-labelledby="arch-title arch-desc">
+            <title id="arch-title">CompanionX architecture</title>
+            <desc id="arch-desc">Kiosk mic to the app's own recorder, to Azure speech-to-text, to app logic. App logic handles reminders, distress phrases, weather, news, poems and family email locally, and sends everything else to the HeyGen LiveAvatar over WebRTC, with Azure text-to-speech as a fallback. App logic also writes events to the Express backend, which serves the Next.js caregiver and family dashboard.</desc>
+
+            <!-- edges first, so nodes sit on top -->
+            <path class="e" id="e-mic-rec" d="M170,75 H210"/>
+            <path class="e" id="e-rec-stt" d="M370,75 H410"/>
+            <path class="e" id="e-stt-logic" d="M570,75 H610"/>
+            <path class="e" id="e-logic-local" d="M780,75 C806,75 806,95 830,95"/>
+            <path class="e" id="e-logic-avatar" d="M780,75 C810,75 800,250 830,250"/>
+            <path class="e fallback" id="e-avatar-tts" d="M965,290 V330"/>
+            <path class="e" id="e-logic-backend" d="M695,110 V420"/>
+            <path class="e" id="e-backend-dash" d="M780,515 H830"/>
+            <text class="el" x="790" y="182">everything else</text>
+            <text class="el" x="975" y="315">fallback</text>
+            <text class="el" x="705" y="270">events</text>
+            <text class="el" x="784" y="507">REST</text>
+
+            <g class="n" id="n-mic"><rect x="20" y="40" width="150" height="70" rx="12"/><text class="t" x="36" y="70">Kiosk mic</text><text class="s" x="36" y="92">resident speaks</text></g>
+            <g class="n" id="n-rec"><rect x="210" y="40" width="160" height="70" rx="12"/><text class="t" x="226" y="70">App recorder</text><text class="s" x="226" y="92">not HeyGen's mic</text></g>
+            <g class="n" id="n-stt"><rect x="410" y="40" width="160" height="70" rx="12"/><text class="t" x="426" y="70">/api/stt</text><text class="s" x="426" y="92">Azure STT</text></g>
+            <g class="n" id="n-logic"><rect x="610" y="40" width="170" height="70" rx="12"/><text class="t" x="626" y="70">App logic</text><text class="s" x="626" y="92">routes all speech</text></g>
+
+            <g class="n" id="n-local"><rect x="830" y="20" width="270" height="150" rx="12"/><text class="t" x="846" y="48">Handled locally</text>
+              <text class="li" x="846" y="74">· medicine reminders</text><text class="li" x="846" y="96">· distress phrases</text><text class="li" x="846" y="118">· weather, news, poems</text><text class="li" x="846" y="140">· email to family</text></g>
+            <g class="n" id="n-avatar"><rect x="830" y="210" width="270" height="80" rx="12"/><text class="t" x="846" y="242">HeyGen LiveAvatar</text><text class="s" x="846" y="266">WebRTC, streamed in browser</text></g>
+            <g class="n" id="n-tts"><rect x="830" y="330" width="270" height="70" rx="12"/><text class="t" x="846" y="360">Azure TTS</text><text class="s" x="846" y="382">when avatar is down or asleep</text></g>
+
+            <g class="n" id="n-backend"><rect x="410" y="420" width="370" height="150" rx="12"/><text class="t" x="426" y="450">Express backend</text>
+              <text class="li" x="426" y="478">· credentials and accounts</text><text class="li" x="426" y="500">· care log and vitals</text><text class="li" x="426" y="522">· audit log</text><text class="s" x="426" y="550">server assigns identity and timestamps</text></g>
+            <g class="n" id="n-dash"><rect x="830" y="440" width="270" height="130" rx="12"/><text class="t" x="846" y="470">Caregiver &amp; family</text><text class="t" x="846" y="490">dashboard</text><text class="s" x="846" y="514">Next.js</text>
+              <text class="li" x="846" y="542">vitals · medicines · settings · access</text></g>
+          </svg>
+        </div>
+        <ol class="arch-path" id="archPath" aria-hidden="true"></ol>
+        <p class="arch-cap" aria-live="polite"><b id="capKey">distress</b><span id="capText">The app hears the sentence before any chatbot does. The distress matcher fires, the event is stored with a server-assigned identity and timestamp, and it shows up on the caregiver page.</span></p>
+        <p class="arch-hint">Scenarios cycle on their own until you pick one.</p>
+      </div>
+    </section>
+
+    <!-- ======= Decisions ======= -->
+    <section id="decisions" style="padding-top:0">
+      <div class="wrap">
+        <div class="ltag">L03 · hard decisions</div>
+        <h2>Six calls that shaped it.</h2>
+        <p class="lede">Most of these trade a little convenience for safety. With older residents and health data, that's the right direction.</p>
+
+        <div class="decisions">
+          <article class="dec">
+            <span class="k">Listening</span>
+            <h3>The app listens, not the avatar.</h3>
+            <p>HeyGen's built-in mic is deliberately unused, so the app hears every sentence first. That's how a distress phrase or “send an email to my son” is never missed by a chatbot.</p>
+            <p class="tradeoff"><b>Trade-off</b> One extra speech-to-text step before the reply.</p>
+          </article>
+
+          <article class="dec">
+            <span class="k">Failure modes</span>
+            <h3>Fail quiet for her, loud for privacy.</h3>
+            <p>A failed web lookup must never cost her the avatar. Anything that could show one resident's data to another fails hard.</p>
+          </article>
+
+          <article class="dec">
+            <span class="k">Health data</span>
+            <h3>Privacy is scoped per resident.</h3>
+            <ul>
+              <li>Accounts are split into caretaker and family roles, with access scoped per resident.</li>
+              <li>A break-glass master key stores only its hash. Its sessions last 8 hours, and every use is audited.</li>
+              <li>The backend assigns identity and timestamps on stored events instead of trusting the request.</li>
+              <li>Moving to a new resident closes out the old one and never deletes their records.</li>
+            </ul>
+          </article>
+
+          <article class="dec">
+            <span class="k">Matching</span>
+            <h3>Conservative matching.</h3>
+            <p>The reminder and distress matchers return nothing rather than guess. A false “she's in distress” is worse than asking her to say it again.</p>
+          </article>
+
+          <article class="dec">
+            <span class="k">Reminders</span>
+            <h3>Gentle reminders.</h3>
+            <p>A medicine reminder asks once, nudges again after 4 minutes, and is logged as missed after 15.</p>
+            <div class="tl-viz" role="img" aria-label="Timeline: ask at 0 minutes, nudge at 4 minutes, logged as missed at 15 minutes">
+              <div class="track"></div>
+              <div class="pt start" style="left:0"><i></i><span><b>0 min</b><br>asks once</span></div>
+              <div class="pt mid" style="left:26.67%"><i></i><span><b>4 min</b><br>nudges again</span></div>
+              <div class="pt end" style="left:100%"><i></i><span><b>15 min</b><br>logged missed</span></div>
+            </div>
+            <p>A missed-dose streak raises an alert on the caregiver page.</p>
+          </article>
+
+          <article class="dec">
+            <span class="k">Constraints</span>
+            <h3>Within the shared server's limits.</h3>
+            <p>It runs on a shared 8 GB, Node 20 server. Builds use webpack instead of Turbopack, and the Azure SDK versions are pinned.</p>
+            <div class="mem" role="img" aria-label="Peak build memory: Turbopack about 3 GB and crashed out of memory; webpack about 1.9 GB. Scale is the 8 GB server.">
+              <div class="mem-row"><span>Turbopack</span><div class="mem-track"><div class="mem-bar bad" style="width:37.5%"></div></div><span class="mem-val">~3 GB · OOM</span></div>
+              <div class="mem-row"><span>webpack</span><div class="mem-track"><div class="mem-bar ok" style="width:23.75%"></div></div><span class="mem-val">~1.9 GB</span></div>
+              <div class="mem-row mem-axis" aria-hidden="true"><span></span><div><span>0</span><span>4 GB</span><span>8 GB</span></div><span></span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= CTA ======= -->
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="ltag">L04 · unembed <span>· contact</span></div>
+        <div class="contact-card case-cta">
+          <span class="k">Want the full walkthrough?</span>
+          <a class="mail" href="mailto:sanjit.kulkarni.2018@gmail.com">sanjit.kulkarni.2018<wbr>@gmail.com</a>
+          <div class="links">
+            <a class="btn hot" href="../index.html#work">← Back to all work</a>
+            <a class="btn" href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn" href="https://github.com/admiralxeon" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="btn" href="../Sanjit_Kulkarni_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Sanjit Kulkarni.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="https://www.linkedin.com/in/sanjit-kulkarni/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/admiralxeon" target="_blank" rel="noopener">GitHub</a>
+        <a href="../Sanjit_Kulkarni_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/case-study.js?v=2026-10-29g"></script>
+</body>
+</html>

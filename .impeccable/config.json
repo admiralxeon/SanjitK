@@ -1,0 +1,80 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-28T11:42:43.027Z",
+        "reason": "Claude: only instance is the forward-pass canvas (div.net), which fills its box and draws its own inset"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "projects/companionx.html"
+        ],
+        "createdAt": "2026-10-28T11:42:43.146Z",
+        "reason": "Claude: only instances are the SVG architecture diagram (div.arch) and the to-scale memory bars (div.mem-track), both intentional"
+      },
+      {
+        "rule": "pulsing-dot",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-28T11:42:43.281Z",
+        "reason": "Claude: after removing the decorative status pulse, the only pulsing dot is .tool i, which pulses only while a tool call runs"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-28T11:42:43.424Z",
+        "reason": "Claude: only glow is the 1s highlight on freshly streamed tokens in the Ask panel (literal token-streaming motion)"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "projects/companionx.html"
+        ],
+        "createdAt": "2026-10-28T11:42:56.237Z",
+        "reason": "Claude: rule comes from the shared stylesheet (Ask panel token highlight); not rendered on this page"
+      },
+      {
+        "rule": "pulsing-dot",
+        "value": "*",
+        "files": [
+          "projects/companionx.html"
+        ],
+        "createdAt": "2026-10-28T11:42:56.369Z",
+        "reason": "Claude: rule comes from the shared stylesheet (.tool i, live tool-call state); not rendered on this page"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-28T11:42:56.524Z",
+        "reason": "Claude: only stripes are .mem-bar.bad, hatching that marks the Turbopack build that ran out of memory (semantic, not decorative)"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "projects/companionx.html"
+        ],
+        "createdAt": "2026-10-28T11:42:56.675Z",
+        "reason": "Claude: only stripes are .mem-bar.bad, hatching that marks the Turbopack build that ran out of memory (semantic, not decorative)"
+      }
+    ]
+  }
+}
